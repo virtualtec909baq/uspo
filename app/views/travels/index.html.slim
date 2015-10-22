@@ -1,0 +1,33 @@
+h1 Listing travels
+
+table
+  thead
+    tr
+      th City id destination
+      th City id departure
+      th Arrive time
+      th Departure time
+      th Img ticke
+      th Description
+      th User
+      th
+      th
+      th
+
+  tbody
+    - @travels.each do |travel|
+      tr
+        td = travel.city_id_destination
+        td = travel.city_id_departure
+        td = travel.arrive_time
+        td = travel.departure_time
+        td = travel.img_ticke
+        td = travel.description
+        td = travel.user_id
+        td = link_to 'Show', travel
+        td = link_to 'Edit', edit_travel_path(travel)
+        td = link_to 'Destroy', travel, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Travel', new_travel_path

@@ -11,10 +11,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022154306) do
+ActiveRecord::Schema.define(version: 20151022191528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.integer  "location_id"
+    t.string   "cd"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "description"
+    t.string   "cd"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "packege_types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "packeges", force: :cascade do |t|
+    t.integer  "travel_id"
+    t.integer  "sender_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "senders", force: :cascade do |t|
+    t.integer  "city_id_destination"
+    t.integer  "city_id_departure"
+    t.time     "arrive_time"
+    t.string   "img"
+    t.string   "object_description"
+    t.integer  "user_id"
+    t.integer  "packege_type_id"
+    t.string   "note"
+    t.boolean  "status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "travels", force: :cascade do |t|
+    t.integer  "city_id_destination"
+    t.integer  "city_id_departure"
+    t.time     "arrive_time"
+    t.time     "departure_time"
+    t.string   "img_ticke"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :packeges
+  resources :packege_types
+  resources :senders
+  resources :travels
+  resources :cities
+  resources :locations
   devise_for :users
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

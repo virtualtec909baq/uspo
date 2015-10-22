@@ -1,0 +1,30 @@
+= form_for @travel do |f|
+  - if @travel.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@travel.errors.count, "error")} prohibited this travel from being saved:"
+      ul
+        - @travel.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :city_id_destination
+    = f.text_field :city_id_destination
+  .field
+    = f.label :city_id_departure
+    = f.text_field :city_id_departure
+  .field
+    = f.label :arrive_time
+    = f.time_select :arrive_time
+  .field
+    = f.label :departure_time
+    = f.time_select :departure_time
+  .field
+    = f.label :img_ticke
+    = f.text_field :img_ticke
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :user_id
+    = f.text_field :user_id
+  .actions = f.submit
