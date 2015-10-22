@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Travel:
+  = @packege.travel_id
+p
+  strong Sender:
+  = @packege.sender_id
+p
+  strong Status:
+  = @packege.status
+
+= link_to 'Edit', edit_packege_path(@packege)
+'|
+= link_to 'Back', packeges_path

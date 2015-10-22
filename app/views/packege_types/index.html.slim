@@ -1,0 +1,21 @@
+h1 Listing packege_types
+
+table
+  thead
+    tr
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @packege_types.each do |packege_type|
+      tr
+        td = packege_type.description
+        td = link_to 'Show', packege_type
+        td = link_to 'Edit', edit_packege_type_path(packege_type)
+        td = link_to 'Destroy', packege_type, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Packege type', new_packege_type_path
