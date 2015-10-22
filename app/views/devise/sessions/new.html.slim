@@ -1,18 +1,22 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form login-form'} ) do |f|
+  .login-wrap
+    p.login-img
+      i.fa.fa-lock.fa-4
+    .input-group
+      span.input-group-addon
+        i.fa.fa-user
+      = f.text_field :email, autocomplete: "off", :placeholder =>"email",:class =>"form-control"
+    .input-group
+      span.input-group-addon
+        i.fa.fa-lock
+      = f.password_field :password, autocomplete: "off", :placeholder =>"password", :class =>"form-control"
+    label.checkbox
+      input type="checkbox" value="remember-me" /
+      | Remember me
+      span.pull-right
+        a href="#"  Forgot Password?
+    button.btn.btn-danger.btn-lg.btn-block type="submit"  Login
+    button.btn.btn-warning.btn-lg.btn-block type="submit"  Signup
+    hr
+    button.btn.btn-primary.btn-lg.btn-block type="submit"  Facebook
+    button.btn.btn-info.btn-lg.btn-block type="submit"  Twitter
