@@ -10,33 +10,29 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'normalize-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'pg'
 gem 'devise'
+gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
+gem 'omniauth' # required for devise_token_auth
 gem 'rails-i18n'
 gem "therubyracer"
-gem "less-rails"
 gem 'modernizr-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-datepicker-rails'
-gem 'jquery-datatables-rails', '~> 3.2.0'
-gem 'jquery-countdown-rails'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem "font-awesome-rails"
-gem 'cancancan', '~> 1.10'
-gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
-
+gem "chartkick"
+gem 'faker'
 gem 'unicorn'
+gem 'city-state'
 
 group 'development' do
-  gem 'faker'
   gem 'hirb'
 end
 

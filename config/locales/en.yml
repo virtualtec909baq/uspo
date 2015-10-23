@@ -1,4 +1,10 @@
 en:
+  home:
+    index:
+     packeges: "Packeges"
+     sender: "Senders"
+     travel: "Travels"
+     users: "Users"
   layouts:
     application:
       title: "Home"

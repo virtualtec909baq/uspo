@@ -11,11 +11,19 @@ Website: http://geekslabs.com/
 
 body {
     color: #797979;
-    background: #eeeeee;
+    background: #F5F5F5;
     font-family: 'Lato', sans-serif;
     padding-top: 0px !important;
     margin: 0px !important;
     font-size:14px !important;    
+}
+.breadcrumb{
+    background-color: white;
+}
+
+.navbar-brand{
+    font-size: 26px;
+    font-weight: 300;
 }
 h1,h2,h3,h4,h5{
     font-weight: 300;
@@ -33,7 +41,7 @@ a, a:hover, a:focus {
     outline: 0;
 }
 input:focus, textarea:focus { outline: none; }
-table tr th { color: #007AFF;}
+
 *:focus {outline: none;}
 ::selection {
     background: #007AFF;
@@ -509,7 +517,7 @@ ul.sidebar-menu li.active a i {
     z-index: 1002;
 }
 
-.white-bg {    
+.navbar {    
     background: rgba(255,255,255,0.9);
     border-bottom: 1px solid #f1f2f7;
 }
@@ -4007,7 +4015,91 @@ span.customSelect {
 span.customSelect.changed {
     background-color: #fff;
 }
+.no-padding {
+    margin: 0;
+    padding: 0;
+}
+.panel-widget {
+    padding: 0;
+    position: relative;
+}
+.widget-right {
+    background: #fff none repeat scroll 0 0;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #999;
+    font-weight: 300;
+    height: 80px;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 20px;
+    text-align: left;
+}
+.widget-right .large {
+    color: #5f6468;
+}
+.large {
+    font-size: 2em;
+}
+.widget-right .text-muted {
+    color: #9fadbb;
+}
+.widget-left {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    height: 80px;
+    padding-top: 15px;
+    text-align: center;
+}
+.panel-blue .widget-left {
+    background: #30a5ff none repeat scroll 0 0;
+    color: #fff;
+}
+.panel.panel-blue.panel-widget {
+    border: 1px solid #30a5ff;
+}
+.panel-orange .widget-left {
+    background: #ffb53e none repeat scroll 0 0;
+    color: #fff;
+}
+.panel.panel-orange.panel-widget {
+    border: 1px solid #ffb53e;
+}
+.panel.panel-teal.panel-widget {
+    border: 1px solid #1ebfae;
+}
+.panel-teal .widget-left {
+    background: #1ebfae none repeat scroll 0 0;
+    color: #fff;
 
+}
+.panel-red {
+    background: #f9243f none repeat scroll 0 0;
+    color: #fff;
+}
 .fa-4 {
     font-size: 1.5em;
+}
+.fa-3{
+    font-size: 3em;
+}
+.table-responsive {
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    width: 100%;
+}
+.table-responsive {
+    min-height: 0.01%;
+    overflow-x: auto;
+}
+tr, th {
+    text-align: center;
+}
+.fa.fa-trash-o {
+    color: #D9534F;
+}
+.form-wrap {
+    width: 30%;
+    margin: 0 auto;
 }

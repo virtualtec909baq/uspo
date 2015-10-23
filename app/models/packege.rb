@@ -1,4 +1,4 @@
 class Packege < ActiveRecord::Base
-	belong_to :travel
-	belong_to :sender
+	belongs_to :travel
+	belongs_to :sender
 end
