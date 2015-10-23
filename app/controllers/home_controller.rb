@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
-  	@packeges = Packege.all.count
-  	@users = User.all.count
-  	@travels = Travel.all.count
-  	@senders = Sender.all.count
+  	@packeges = 0
+  	@users = 0
+  	@travels = 0
+  	@senders = 0
   end
 end
