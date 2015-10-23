@@ -16,5 +16,9 @@ test:
   database: db/test
 
 production:
-  <<: *default
-  database: db/production   
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  database: hastinik_development_production
+  username: hastinik_development
+  password: <%= ENV['IMPALA_DATABASE_PASSWORD'] %> 
