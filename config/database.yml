@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: uspo_developer
-  host: localhost
+  host: 127.0.0.1
   username: postgres
   password: qwerty
 
