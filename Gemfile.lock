@@ -24,7 +24,7 @@ GIT
       actionpack (>= 3.2.13)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     CFPropertyList (2.3.2)
     actionmailer (4.2.4)

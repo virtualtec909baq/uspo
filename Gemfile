@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "http://rubygems.org"
 
 ruby File.read(".ruby-version").strip
 
@@ -13,8 +13,8 @@ gem 'normalize-rails'
 gem 'slim-rails'
 gem 'pg'
 gem 'devise'
-gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
-gem 'omniauth' # required for devise_token_auth
+gem 'devise_token_auth' 
+gem 'omniauth' 
 gem 'rails-i18n'
 gem "therubyracer"
 gem 'modernizr-rails'
@@ -25,7 +25,7 @@ gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem "font-awesome-rails"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "less-rails" 
 gem "twitter-bootstrap-rails"
 gem "chartkick"
 gem 'faker'
