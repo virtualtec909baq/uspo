@@ -2,11 +2,6 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
   get 'cities/:state', to: 'application#cities'
-  resources :packeges
-  resources :packege_types
-  resources :senders
-  resources :travels
-  resources :cities
   resources :locations
   
   namespace :api , defaults: { format: :json } do
