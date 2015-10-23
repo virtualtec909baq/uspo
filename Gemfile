@@ -32,10 +32,6 @@ gem 'faker'
 gem 'unicorn'
 gem 'city-state'
 
-group 'development' do
-  gem 'hirb'
-end
-
 group :test do
   gem 'capybara'
   gem 'shoulda-matchers', require: false
