@@ -9,27 +9,20 @@ class SessionsController < Devise::SessionsController
    sign_in(resource_name, resource)
  
    current_user.update authentication_token: nil
- 
    respond_to do |format|
-     format.html { redirect_to root_path }
-     format.json {
-       render :json => {
-         :status => :ok,
-         :user => current_user,
-       }
-     }
+      if params[:json]
+        format.json {render :json => {:status => :ok,:user => current_user,}}
+      else
+        format.html { redirect_to root_path }
+      end
    end
   end
 
   # DELETE /resource/sign_out
   def destroy
    respond_to do |format|
-     format.html { 
-      current_user.update authentication_token: nil
-      signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-      redirect_to landing_page_path 
-      } 
-     format.json {
+    if params[:json]
+      format.json {
        if current_user
          current_user.update authentication_token: nil
          signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
@@ -38,6 +31,14 @@ class SessionsController < Devise::SessionsController
          render :json => {:status => :unprocessable_entity}.to_json, :status => :unprocessable_entity
        end
      }
+    else
+      format.html { 
+      current_user.update authentication_token: nil
+      signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+      redirect_to landing_page_path 
+      }
+    end
+     
    end
   end
 end
