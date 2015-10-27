@@ -1,0 +1,78 @@
+ol.breadcrumb
+  li
+    a href="#{ root_path}" 
+      span.fa.fa-inbox
+  li.active Inbox
+
+.row
+  .col-lg-3
+    .ibox.float-e-margins.ibox-title
+      .ibox-content.mailbox-content
+        .file-manager
+          a.btn.btn-block.btn-primary.compose-mail href="/mailbox/compose_email"  Compose Mail
+          .space-25
+          h5 Folders
+          ul.folder-list.m-b-md style=("padding: 0") 
+            li
+              a href="#{messages_path}" 
+                i.fa.fa-inbox
+                | Inbox
+                span.label.label-warning.pull-right 16
+            li
+              a href="/mailbox/inbox" 
+                i.fa.fa-envelope-o
+                | Send Mail
+            li
+              a href="/mailbox/inbox" 
+                i.fa.fa-certificate
+                | Important
+                span.label.label-danger.pull-right 2
+            li
+              a href="/mailbox/inbox" 
+                i.fa.fa-trash-o
+                | Trash
+          
+  .col-lg-9.animated.fadeInRight
+    .mail-box-header
+      h2
+        | Inbox (16)
+    .mail-box
+      table.table.table-hover.table-mail.ibox-title
+        tbody
+          tr.unread
+            td.check-mail
+            td.mail-ontact
+              a href="/mailbox/email_view"  Anna Smith
+            td.mail-subject
+              a href="/mailbox/email_view"  Lorem ipsum dolor noretek imit set.
+            td
+              i.fa.fa-paperclip
+            td.text-right.mail-date 6.10 AM
+          tr.unread
+            td.check-mail
+            td.mail-ontact
+              a href="/mailbox/email_view"  Jack Nowak
+            td.mail-subject
+              a href="/mailbox/email_view"  Aldus PageMaker including versions of Lorem Ipsum.
+            td
+            td.text-right.mail-date 8.22 PM
+          tr.read
+            td.check-mail
+            td.mail-ontact
+              a href="/mailbox/email_view"  Facebook
+              span.label.label-warning.pull-right New
+            td.mail-subject
+              a href="/mailbox/email_view"  Many desktop publishing packages and web page editors.
+            td
+            td.text-right.mail-date Jan 16
+          tr.read
+            td.check-mail
+               
+            td.mail-ontact
+              a href="/mailbox/email_view"  Mailchip
+            td.mail-subject
+              a href="/mailbox/email_view"  There are many variations of passages of Lorem Ipsum.
+            td
+            td.text-right.mail-date Mar 22
+          
+      

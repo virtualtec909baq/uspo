@@ -1,0 +1,40 @@
+.col-xs-12.col-md-6.col-lg-3.hidden-xs
+  .panel.panel-blue.panel-widget
+    .row.no-padding
+      .col-sm-3.col-lg-5.widget-left
+        em.fa.fa-money.fa-3
+      .col-sm-9.col-lg-7.widget-right
+        .large 
+        |	$ 50,992
+        .text-muted 
+        	= t('.packeges')
+.col-xs-12.col-md-6.col-lg-3.hidden-xs
+  .panel.panel-orange.panel-widget
+    .row.no-padding
+      .col-sm-3.col-lg-5.widget-left
+        em.fa.fa-plane.fa-3
+      .col-sm-9.col-lg-7.widget-right
+        .large 
+        	= @senders
+        .text-muted 
+         = t('.sender')
+.col-xs-12.col-md-6.col-lg-3.hidden-xs
+  .panel.panel-teal.panel-widget
+    .row.no-padding
+      .col-sm-3.col-lg-5.widget-left
+        em.fa.fa-paper-plane-o.fa-3
+      .col-sm-9.col-lg-7.widget-right
+        .large 
+        	= @travels
+        .text-muted
+        	= t('.travel')
+.col-xs-12.col-md-6.col-lg-3.hidden-xs
+  .panel.panel-red.panel-widget
+    .row.no-padding
+      .col-sm-3.col-lg-5.widget-left
+        em.fa.fa-users.fa-3
+      .col-sm-9.col-lg-7.widget-right
+        .large 
+        	= @users_count
+        .text-muted 
+        	= t('.users')

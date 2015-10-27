@@ -1,15 +1,17 @@
 en:
   home:
-    index:
-     packeges: "Packeges"
-     sender: "Senders"
+    panels:
+     packeges: "Income"
+     sender: "Orders"
      travel: "Travels"
-     users: "Users"
+     users: "User activity"
   layouts:
     application:
-      title: "Home"
-      about: "About Us"
+      title: "Index"
+      locations: "Locations"
       contact: "Contact"
+      users: "Users"
+      couriers: "Couriers"
       singin: "Sign In"
       singup: "Sign Up"
 

@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  devise_for :users
-  get 'cities/:state', to: 'application#cities'
-  resources :locations
-  
-  namespace :api , defaults: { format: :json } do
-    scope :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth'
-    end
-  end
-  
+  	root 'home#index'
+	devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+	get :landing_page, to: 'home#landing_page', as: :landing_page
+	get :users_index, to: 'home#users_index', as: :users_index
+	resources :couriers, only: [:index, :show]
+	resources :remittents, only: [:index, :show]
+	resources :locations, :except => [:show]
+	resources :messages
+	
+	namespace :api , defaults: { format: :json } do
+		resources :locations, only: [:index]
+		resources :couriers
+		resources :messages
+		resources :remittents
+	end
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  trip_description: MyText
+  img_ticket: MyString
+  location_arrived: MyString
+  location_departure: MyString
+  time_arriv: 2015-10-26 13:26:00
+  departure_time: 2015-10-26 13:26:00
+
+two:
+  user_id: 1
+  trip_description: MyText
+  img_ticket: MyString
+  location_arrived: MyString
+  location_departure: MyString
+  time_arriv: 2015-10-26 13:26:00
+  departure_time: 2015-10-26 13:26:00

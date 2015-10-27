@@ -8,25 +8,22 @@ ol.breadcrumb
   .container
     = render partial: 'filter'
 
-
-table.table-responsive.table.table-striped.table-bordered.table-hover
-  thead
-    tr
-      th Description
-      th Cd
-      th colspan="2" 
-
-  tbody
-    - @locations.each do |location|
+.ibox-title
+  table.table-responsive.table.table-striped.table-bordered.table-hover
+    thead
       tr
-        td = location.description
-        td = location.cd
-        td 
-          = link_to edit_location_path(location) do
-            i.fa.fa-pencil-square-o
-        td 
-          = link_to location, data: {:confirm => 'Are you sure?'}, :method => :delete do
-            i.fa.fa-trash-o
+        th Description
+        th Cd
+        th colspan="2" 
 
-br
-
+    tbody
+      - @locations.each do |location|
+        tr
+          td = location.description
+          td = location.cd
+          td 
+            = link_to edit_location_path(location) do
+              i.fa.fa-pencil-square-o
+          td 
+            = link_to location, data: {:confirm => 'Are you sure?'}, :method => :delete do
+              i.fa.fa-trash-o

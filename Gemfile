@@ -13,7 +13,6 @@ gem 'normalize-rails'
 gem 'slim-rails'
 gem 'pg'
 gem 'devise'
-gem 'devise_token_auth' 
 gem 'omniauth' 
 gem 'rails-i18n'
 gem "therubyracer"
@@ -28,15 +27,17 @@ gem "font-awesome-rails"
 gem "less-rails" 
 gem "twitter-bootstrap-rails"
 gem "chartkick"
+gem 'groupdate'
 gem 'faker'
 gem 'unicorn'
 gem 'city-state'
+gem 'bower-rails'
+gem 'cancancan', '~> 1.10'
+gem 'simple_token_authentication', '~> 1.0'
 
 group :test do
   gem 'capybara'
   gem 'shoulda-matchers', require: false
-  gem 'rspec-activemodel-mocks'
-  gem 'rspec-collection_matchers'
 end
 
 group :production do

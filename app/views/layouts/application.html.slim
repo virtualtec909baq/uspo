@@ -4,6 +4,7 @@ html lang="en"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" 
     title= content_for?(:title) ? yield(:title) : "Uspo"
     = csrf_meta_tags
 
@@ -20,19 +21,41 @@ html lang="en"
     = javascript_include_tag "application"
 
 
-  - if params[:controller] == "devise/sessions"
+  - if params[:controller] == "sessions" or params[:controller] == "devise/passwords"
     body.login-img3-body
   else
     body style=("padding-top: 50px ! important;")
-      - unless params[:controller] == "devise/sessions"
+      - unless params[:controller] == "devise/sessions" or params[:controller] == "devise/passwords"
         = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
             = menu_group do
                 = menu_item t('.title'), root_path 
-                = menu_item t('.about'), "#"
-                = menu_item t('.contact'), "#"
+                = menu_item t('.locations'), locations_path
+                = menu_item t('.users'), remittents_path
+                = menu_item t('.packege'), root_path
             - if current_user
               = menu_group pull: :right do
-                  = menu_item t('.singup'), user_registration_path
+                = drop_down "Products" do
+                  li
+                    .dropdown-messages-box
+                      a.pull-left href="profile.html" 
+                        img.img-circle.messages-img alt="image" src="https://placehold.it/50x50" /
+                      .messages
+                        small.pull-right 46h ago
+                        strong Mike Loreipsum
+                        br/
+                        | started following
+                          strong Monica Smith
+                        br/
+                        small.text-muted 3 days ago at 7:58 pm - 10.06.2014
+                  hr
+                  .text-center.link-block
+                    a href="#{messages_path}" 
+                      i.fa.fa-envelope
+                      | Read All Messages
+
+                = menu_item "Log Out", destroy_user_session_path, :method => :delete, :class => 'logout'
+                
+                
       
       .container
         .row
