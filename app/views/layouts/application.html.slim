@@ -25,7 +25,7 @@ html lang="en"
     body.login-img3-body
   else
     body style=("padding-top: 50px ! important;")
-      - unless params[:controller] == "devise/sessions" or params[:controller] == "devise/passwords"
+      - unless params[:controller] == "sessions" or params[:controller] == "devise/passwords"
         = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
             = menu_group do
                 = menu_item t('.title'), root_path 
@@ -55,8 +55,6 @@ html lang="en"
 
                 = menu_item "Log Out", destroy_user_session_path, :method => :delete, :class => 'logout'
                 
-                
-      
       .container
         .row
           .col-lg-12
