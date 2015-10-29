@@ -10,7 +10,13 @@ class Api::CouriersController < ApplicationController
     else
       @couriers = Courier.all.order(created_at: :desc)
     end
-    render json: { couriers: @couriers, status: "ok" },status: 200
+    @couriers_list = []
+    @couriers.each do |courier|
+      a = ["id", "#{courier.id}", "user", "#{courier.user.name}","trip_description", "#{courier.trip_description}", "location_arrived", "#{courier.location_arrived}", "location_departure", "#{courier.location_departure}", "time_arriv", "#{courier.time_arriv}", "departure_time", "#{courier.departure_time}"]
+      h = Hash[*a]
+      @couriers_list << h
+    end
+    render json: { couriers: @couriers_list, status: "ok" },status: 200
   end
 
   # GET /couriers/1
