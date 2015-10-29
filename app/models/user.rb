@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   after_initialize :skip_confirmed_at
 
   has_many :couriers
+  has_many :remittents
   
   def skip_confirmed_at
       self.confirmed_at  ||= Time.now

@@ -42,7 +42,7 @@ class Api::CouriersController < ApplicationController
     if @courier.destroy
       render json: { courier: @courier, status: "ok" },status: 200
     else 
-      render json: { message: "", status: "not_found" },status: 422
+      render json: { message: "courier not_found", status: "not_found" },status: 422
     end
   end
 
