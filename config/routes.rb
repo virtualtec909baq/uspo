@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 		resources :couriers
 		resources :messages
 		resources :remittents
+		get "home/:id/profile", to:"home#profile", as: "profile"
 	end
 end
