@@ -20,13 +20,13 @@ class Api::CouriersController < ApplicationController
   end
 
   # POST /couriers
+  
   def create
     @courier = Courier.new(courier_params)
-
     if @courier.save
-      redirect_to @courier, notice: 'Courier was successfully created.'
-    else
-      render :new
+      render json: { courier: @courier, status: "ok" },status: 200
+    else 
+      render json: { message: @courier.errors, status: "fail" },status: 422
     end
   end
 
