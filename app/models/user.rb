@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   # before_validation :set_uid
   after_initialize :skip_confirmed_at
 
+  has_many :couriers
+  
   def skip_confirmed_at
       self.confirmed_at  ||= Time.now
   end

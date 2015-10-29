@@ -4,7 +4,13 @@ class Api::CouriersController < ApplicationController
   
   # GET /couriers
   def index
-    @couriers = Courier.all
+    if params[:q]
+      @search = Courier.ransack(params[:q])
+      @couriers = @search.result.order(created_at: :desc)
+    else
+      @couriers = Courier.all.order(created_at: :desc)
+    end
+    render json: { couriers: @couriers, status: "ok" },status: 200
   end
 
   # GET /couriers/1
@@ -36,7 +42,7 @@ class Api::CouriersController < ApplicationController
     if @courier.destroy
       render json: { courier: @courier, status: "ok" },status: 200
     else 
-      render json: { message: @courier.errors, status: "not_found" },status: 422
+      render json: { message: "", status: "not_found" },status: 422
     end
   end
 
