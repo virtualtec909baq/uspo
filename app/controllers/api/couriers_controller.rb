@@ -1,6 +1,7 @@
 class Api::CouriersController < ApplicationController
   before_action :set_courier, only: [:show, :edit, :update, :destroy]
-
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  
   # GET /couriers
   def index
     @couriers = Courier.all
@@ -10,15 +11,6 @@ class Api::CouriersController < ApplicationController
   def show
   end
 
-  # GET /couriers/new
-  def new
-    @courier = Courier.new
-  end
-
-  # GET /couriers/1/edit
-  def edit
-  end
-
   # POST /couriers
   
   def create
@@ -26,30 +18,41 @@ class Api::CouriersController < ApplicationController
     if @courier.save
       render json: { courier: @courier, status: "ok" },status: 200
     else 
-      render json: { message: @courier.errors, status: "fail" },status: 422
+      render json: { message: @courier.errors, status: "not_found" },status: 422
     end
   end
 
   # PATCH/PUT /couriers/1
   def update
     if @courier.update(courier_params)
-      redirect_to @courier, notice: 'Courier was successfully updated.'
-    else
-      render :edit
+      render json: { courier: @courier, status: "ok" },status: 200
+    else 
+      render json: { message: @courier.errors, status: "not_found" },status: 422
     end
   end
 
   # DELETE /couriers/1
   def destroy
-    @courier.destroy
-    redirect_to couriers_url, notice: 'Courier was successfully destroyed.'
+    if @courier.destroy
+      render json: { courier: @courier, status: "ok" },status: 200
+    else 
+      render json: { message: @courier.errors, status: "not_found" },status: 422
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_courier
-      @courier = Courier.find(params[:id])
+      if @courier = Courier.find(params[:id])
+        render json: { courier: @courier, status: "ok" },status: 200
+      else 
+        record_not_found(error)
+      end
     end
+    
+    def record_not_found(error)
+      render :json => {:error => error.message}, :status => :not_found
+    end 
 
     # Only allow a trusted parameter "white list" through.
     def courier_params
