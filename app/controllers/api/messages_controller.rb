@@ -1,9 +1,24 @@
 class Api::MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   # GET /messages
   def index
-    @messages = Message.all
+    if params[:inbox]
+      @messages = Message.where(user_id_reciver: params[:user_id]).order(created_at: :desc)
+    elsif params[:sender]
+      @messages = Message.where(user_id_sender: params[:user_id]).order(created_at: :desc)
+    elsif params[:trash]
+      @messages = Message.where(user_id_sender: params[:user_id], trash: true).order(created_at: :desc)
+    else
+      @messages = Message.all
+    end
+    @messages_list = []
+    @messages.each do |message|
+      a = ["id", "#{message.id}", "user_id", "#{courier.user_id}", "user", "#{courier.user.name}","trip_description", "#{courier.trip_description}", "location_arrived", "#{courier.location_arrived}", "location_departure", "#{courier.location_departure}", "time_arriv", "#{courier.time_arriv.strftime("%B %d %Y %I:%M%p")}", "departure_time", "#{courier.departure_time.strftime("%B %d %Y %I:%M%p")}"]
+      h = Hash[*a]
+      @messages_list << h
+    end
+    render json: { messages: @messages_list, status: "ok" },status: 200 
   end
 
   # GET /messages/1
