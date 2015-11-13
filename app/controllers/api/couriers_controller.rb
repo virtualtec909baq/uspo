@@ -56,7 +56,6 @@ class Api::CouriersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_courier
       if @courier = Courier.find(params[:id])
-        render json: { courier: @courier, status: "ok" },status: 200
       else 
         record_not_found(error)
       end
