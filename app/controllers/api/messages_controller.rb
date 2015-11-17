@@ -14,7 +14,7 @@ class Api::MessagesController < ApplicationController
     end
     @messages_list = []
     @messages.each do |message|
-      a = ["id", "#{message.id}", "user_id", "#{courier.user_id}", "user", "#{courier.user.name}","trip_description", "#{courier.trip_description}", "location_arrived", "#{courier.location_arrived}", "location_departure", "#{courier.location_departure}", "time_arriv", "#{courier.time_arriv.strftime("%B %d %Y %I:%M%p")}", "departure_time", "#{courier.departure_time.strftime("%B %d %Y %I:%M%p")}"]
+      a = ["id", "#{message.id}", "user_id_reciver", "#{message.user_id_reciver}", "user_id_sender", "#{message.user_id_sender}", "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
       h = Hash[*a]
       @messages_list << h
     end
