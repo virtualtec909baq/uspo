@@ -1,13 +1,13 @@
 GIT
   remote: git://github.com/activerecord-hackery/polyamorous.git
-  revision: 6e2e1cc5d0b53e4d8f02aa5286e6d11aa91f5ac3
+  revision: a18efb2fe2c7b113fc58be75180b12b7d9933e40
   specs:
     polyamorous (1.2.0)
       activerecord (>= 3.0)
 
 GIT
   remote: git://github.com/activerecord-hackery/ransack.git
-  revision: 33ba135150a5ea2e1636c12ff495f2d0126c032f
+  revision: eab5d391b4b3b0d034ce086245aacbcc24e32fd6
   specs:
     ransack (1.7.0)
       actionpack (>= 3.0)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/justinfrench/formtastic.git
-  revision: 9d937af461e150c26f071b91463b44a014648ad5
+  revision: 6b45dce8eb3e767c454ad58df68c994ecc0ebaec
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 3.2.13)
@@ -64,7 +64,7 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.3)
     bcrypt (3.1.10)
-    bootstrap-datepicker-rails (1.4.0)
+    bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
     bower-rails (0.10.0)
     builder (3.2.2)
@@ -75,6 +75,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chartkick (1.4.1)
     city-state (0.0.13)
       rubyzip (~> 1.1)
@@ -84,7 +89,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     commonjs (0.2.7)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -100,15 +105,15 @@ GEM
       i18n (~> 0.5)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.35.0)
-      fog-aliyun
+    fog (1.36.0)
+      fog-aliyun (>= 0.1.0)
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
       fog-dynect (~> 0.0.2)
       fog-ecloud (~> 0.1)
-      fog-google (>= 0.1.1)
+      fog-google (<= 0.1.0)
       fog-json
       fog-local
       fog-powerdns (>= 0.1.1)
@@ -125,8 +130,8 @@ GEM
       fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      nokogiri
-    fog-aliyun (0.0.10)
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-aliyun (0.1.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       ipaddress (~> 0.8)
@@ -143,13 +148,11 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.32.1)
+    fog-core (1.34.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
       mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
     fog-dynect (0.0.2)
       fog-core
       fog-json
@@ -157,7 +160,7 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (0.1.1)
+    fog-google (0.1.0)
       fog-core
       fog-json
       fog-xml
@@ -188,7 +191,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.0.0)
+    fog-softlayer (1.0.2)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -216,7 +219,7 @@ GEM
       activesupport (>= 4.1.0)
     groupdate (2.5.0)
       activesupport (>= 3)
-    hashie (3.4.2)
+    hashie (3.4.3)
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
@@ -242,20 +245,17 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
     modernizr-rails (2.7.1)
     multi_json (1.11.2)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (3.0.1)
-    nokogiri (1.6.6.2)
+    nokogiri (1.6.6.3)
       mini_portile (~> 0.6.0)
     normalize-rails (3.0.3)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
     orm_adapter (0.5.0)
-    pg (0.18.3)
+    pg (0.18.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -304,9 +304,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    shoulda-matchers (3.0.0)
+    shoulda-matchers (3.0.1)
       activesupport (>= 4.0.0)
-    simple_token_authentication (1.10.0)
+    simple_token_authentication (1.10.1)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
       devise (~> 3.2)
@@ -344,7 +344,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.9.0)
+    unicorn (5.0.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -365,6 +365,7 @@ DEPENDENCIES
   bower-rails
   cancancan (~> 1.10)
   capybara
+  carrierwave
   chartkick
   city-state
   coffee-rails (~> 4.1.0)

@@ -34,6 +34,7 @@ gem 'city-state'
 gem 'bower-rails'
 gem 'cancancan', '~> 1.10'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'carrierwave'
 
 group :test do
   gem 'capybara'
