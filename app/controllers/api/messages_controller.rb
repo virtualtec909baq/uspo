@@ -4,7 +4,7 @@ class Api::MessagesController < ApplicationController
   # GET /messages
   def index
     if params[:inbox]
-      @messages = Message.where(user_id_reciver: params[:user_id]).order(created_at: :desc)
+      @messages = Message.where(user_id_receiver: params[:user_id]).order(created_at: :desc)
     elsif params[:sender]
       @messages = Message.where(user_id_sender: params[:user_id]).order(created_at: :desc)
     elsif params[:trash]
@@ -14,7 +14,7 @@ class Api::MessagesController < ApplicationController
     end
     @messages_list = []
     @messages.each do |message|
-      a = ["id", "#{message.id}", "user_id_reciver", "#{message.user_id_reciver}", "user_id_sender", "#{message.user_id_sender}", "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+      a = ["id", "#{message.id}", "user_id_reciver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}", "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
       h = Hash[*a]
       @messages_list << h
     end
@@ -70,6 +70,6 @@ class Api::MessagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def message_params
-      params.require(:message).permit(:user_id_reciver, :user_id_sender, :messange)
+      params.require(:message).permit(:user_id_receiver, :user_id_sender, :message)
     end
 end
