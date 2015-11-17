@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026201227) do
+ActiveRecord::Schema.define(version: 20151117155310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
-    t.integer  "location_id"
-    t.string   "cd"
     t.string   "description"
+    t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -30,10 +29,10 @@ ActiveRecord::Schema.define(version: 20151026201227) do
     t.string   "img_ticket"
     t.string   "location_arrived"
     t.string   "location_departure"
-    t.time     "time_arriv"
-    t.time     "departure_time"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.datetime "departure_time"
+    t.datetime "time_arriv"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -44,14 +43,14 @@ ActiveRecord::Schema.define(version: 20151026201227) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "user_id_reciver"
     t.integer  "user_id_sender"
     t.boolean  "important"
     t.boolean  "read"
     t.boolean  "trash"
-    t.text     "messange"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "user_id_receiver"
+    t.text     "message"
   end
 
   create_table "packege_types", force: :cascade do |t|

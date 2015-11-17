@@ -27,3 +27,4 @@ ol.breadcrumb
           td 
             = link_to location, data: {:confirm => 'Are you sure?'}, :method => :delete do
               i.fa.fa-trash-o
+  = will_paginate @locations, :locals => { :locations => @locations }, renderer: BootstrapPagination::Rails

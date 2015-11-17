@@ -7,7 +7,6 @@ ol.breadcrumb
 .row
   = render partial: "panels"
   .col-lg-8
-    
     h4 Average value of sales in the past month
     .ibox-title
       = area_chart  @data , colors: [ "#F9243F"],  xtitle: "Time", ytitle: "Sales", stacked: true
@@ -30,4 +29,26 @@ ol.breadcrumb
                 br/
                 small.text-muted
                   = distance_of_time_in_words(user.created_at, Time.now) 
-          
+  .col-lg-12
+    h4 Average value of sales in the past month
+    .ibox-title
+    /   table.table-responsive.table.table-striped.table-bordered.table-hover
+    /     thead
+    /       tr
+    /         th Description
+    /         th Cd
+    /         th colspan="2" 
+
+    /     tbody
+    /       - @locations.each do |location|
+    /         tr
+    /           td = location.description
+    /           td = location.cd
+    /           td 
+    /             = link_to edit_location_path(location) do
+    /               i.fa.fa-pencil-square-o
+    /           td 
+    /             = link_to location, data: {:confirm => 'Are you sure?'}, :method => :delete do
+    /               i.fa.fa-trash-o
+      = js_will_paginate @locations
+      

@@ -21,11 +21,11 @@ html lang="en"
     = javascript_include_tag "application"
 
 
-  - if params[:controller] == "sessions" or params[:controller] == "devise/passwords"
+  - if params[:controller] == "sessions" or params[:controller] == "devise/passwords"   
     body.login-img3-body
-  else
-    body style=("padding-top: 50px ! important;")
-      - unless params[:controller] == "sessions" or params[:controller] == "devise/passwords"
+  - else
+    body
+      - unless params[:controller] == "sessions" or params[:controller] == "devise/passwords" or (params[:controller] == "home" and params[:action] == "landing_page")
         = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
             = menu_group do
                 = menu_item t('.title'), root_path 
@@ -34,7 +34,7 @@ html lang="en"
                 = menu_item t('.packege'), root_path
             - if current_user
               = menu_group pull: :right do
-                = drop_down "Products" do
+                = drop_down "Messages" do
                   li
                     .dropdown-messages-box
                       a.pull-left href="profile.html" 
@@ -54,10 +54,12 @@ html lang="en"
                       | Read All Messages
 
                 = menu_item "Log Out", destroy_user_session_path, :method => :delete, :class => 'logout'
-                
-      .container
-        .row
-          .col-lg-12
-            = bootstrap_flash
+      - unless params[:controller] == "home" and params[:action] == "landing_page"
+        .container
+          .row
+            .col-lg-12
+              = bootstrap_flash
+              = yield
+      - else
             = yield
 

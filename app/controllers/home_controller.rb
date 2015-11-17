@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   	@users = User.all
   	@travels = 0
   	@senders = 0
+    @locations = Location.all.paginate(page: params[:page], per_page: 30)
   	data = [['Year', 'Sales'],
   	['2014', 1000],
   	['2014', 1170],
