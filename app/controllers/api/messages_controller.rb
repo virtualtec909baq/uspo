@@ -37,11 +37,10 @@ class Api::MessagesController < ApplicationController
   # POST /messages
   def create
     @message = Message.new(message_params)
-
     if @message.save
-      redirect_to @message, notice: 'Message was successfully created.'
+      render json: { message: @message, status: "ok" },status: 200
     else
-      render :new
+      render json: { message: @message.errors, status: "not_found" },status: 422
     end
   end
 
@@ -63,7 +62,10 @@ class Api::MessagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      @message = Message.find(params[:id])
+      if @message = Message.find(params[:id])
+      else 
+        record_not_found(error)
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
