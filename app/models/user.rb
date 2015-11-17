@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   def skip_confirmed_at
       self.confirmed_at  ||= Time.now
   end
+  # img_uploader
+  mount_uploader :img, ImageUploader
   
   # def set_provider
   #   puts self[:provider]

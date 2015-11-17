@@ -1,6 +1,7 @@
 class Api::MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  include ApplicationHelper
   # GET /messages
   def index
     if params[:inbox]
@@ -14,7 +15,12 @@ class Api::MessagesController < ApplicationController
     end
     @messages_list = []
     @messages.each do |message|
-      a = ["id", "#{message.id}", "user_id_reciver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}", "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+      if User.exists?(message.user_id_sender)
+        @user_id_sender = User.find(message.user_id_sender)
+        a = ["id", "#{message.id}","message", "#{message.message}", "user_id_reciver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}", "user_img_sender", "#{get_user_photo(@user_id_sender)}",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+      else
+        a = ["id", "#{message.id}", "message", "#{message.message}","user_id_reciver", "#{message.user_id_receiver}", "user_id_sender","#{message.user_id_sender}", "user_name_sender", " ", "user_img_sender", " ",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+      end
       h = Hash[*a]
       @messages_list << h
     end
