@@ -1,5 +1,6 @@
 class Api::RankingsController < ApplicationController
   before_action :set_ranking, only: [:show, :update]
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   # POST /rankings
   def create
@@ -23,9 +24,15 @@ class Api::RankingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ranking
-      @ranking = Ranking.find(params[:id])
+      if @ranking = Ranking.find(params[:id])
+      else 
+        record_not_found(error)
+      end
     end
 
+    def record_not_found(error)
+      render :json => {:error => error.message}, :status => :not_found
+    end 
     # Only allow a trusted parameter "white list" through.
     def ranking_params
       params.require(:ranking).permit(:user_id, :description, :ranking_value, :user_sender_id)

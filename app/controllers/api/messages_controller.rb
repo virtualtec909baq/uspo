@@ -4,7 +4,6 @@ class Api::MessagesController < ApplicationController
   include ApplicationHelper
   
   # GET /messages
-  
   def index
     if params[:inbox]
       @messages = Message.where(:user_id_receiver => params[:user_id]).select("DISTINCT ON (user_id_sender) *") 
@@ -61,6 +60,10 @@ class Api::MessagesController < ApplicationController
         record_not_found(error)
       end
     end
+
+    def record_not_found(error)
+      render :json => {:error => error.message}, :status => :not_found
+    end 
 
     # Only allow a trusted parameter "white list" through.
     def message_params
