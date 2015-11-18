@@ -9,7 +9,6 @@ class Api::HomeController < ApplicationController
 			else
 				ranking = 0
 			end
-			
 			user_array = ["name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"ranking", "#{ranking}" ,"email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
 			@user = Hash[*user_array]
 			render json: { user: @user, status: "ok" },status: 200
@@ -21,9 +20,9 @@ class Api::HomeController < ApplicationController
 	def edit_profile
 		if user = User.find(params[:id]) 
 			if @user.update(user_params)
-				render json: { message: @user, status: "ok" },status: 200
+				render json: { user: @user, status: "ok" },status: 200
 			else
-				render json: { message: @user.errors, status: "not_found" },status: 422
+				render json: { user: @user.errors, status: "not_found" },status: 422
 			end
 		else
 			record_not_found(error)
