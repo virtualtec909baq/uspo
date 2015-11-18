@@ -5,21 +5,17 @@ class Api::MessagesController < ApplicationController
   # GET /messages
   def index
     if params[:inbox]
-      @messages = Message.where(user_id_receiver: params[:user_id]).order(created_at: :desc)
+      @messages = Message.where(:user_id_receiver => params[:user_id]).select("DISTINCT ON (user_id_sender) *") 
     elsif params[:sender]
-      @messages = Message.where(user_id_sender: params[:user_id]).order(created_at: :desc)
-    elsif params[:trash]
-      @messages = Message.where(user_id_sender: params[:user_id], trash: true).order(created_at: :desc)
-    else
-      @messages = Message.all
+      @messages = Message.where(:user_id_sender => params[:user_id]).select("DISTINCT ON (user_id_receiver) *") 
     end
     @messages_list = []
     @messages.each do |message|
       if User.exists?(message.user_id_sender)
         @user_id_sender = User.find(message.user_id_sender)
-        a = ["id", "#{message.id}","message", "#{message.message}", "user_id_reciver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}", "user_img_sender", "#{get_user_photo(@user_id_sender)}",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+        a = ["id", "#{message.id}","message", "#{message.message}", "user_id_receiver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}", "user_img_sender", "#{get_user_photo(@user_id_sender)}",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
       else
-        a = ["id", "#{message.id}", "message", "#{message.message}","user_id_reciver", "#{message.user_id_receiver}", "user_id_sender","#{message.user_id_sender}", "user_name_sender", " ", "user_img_sender", " ",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+        a = ["id", "#{message.id}", "message", "#{message.message}","user_id_receiver", "#{message.user_id_receiver}", "user_id_sender","#{message.user_id_sender}", "user_name_sender", " ", "user_img_sender", " ",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
       end
       h = Hash[*a]
       @messages_list << h

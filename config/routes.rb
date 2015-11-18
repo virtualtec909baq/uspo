@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  	root 'home#index'
+  	root 'home#landing_page	'
 	devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 	get :landing_page, to: 'home#landing_page', as: :landing_page
 	get :users_index, to: 'home#users_index', as: :users_index
