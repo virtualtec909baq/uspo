@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117155310) do
+ActiveRecord::Schema.define(version: 20151118154847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,11 @@ ActiveRecord::Schema.define(version: 20151117155310) do
     t.datetime "time_arriv"
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string   "description"
     t.string   "cd"
@@ -51,6 +56,7 @@ ActiveRecord::Schema.define(version: 20151117155310) do
     t.datetime "updated_at",       null: false
     t.integer  "user_id_receiver"
     t.text     "message"
+    t.integer  "history_id"
   end
 
   create_table "packege_types", force: :cascade do |t|

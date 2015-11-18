@@ -13,9 +13,9 @@ class Api::MessagesController < ApplicationController
     @messages.each do |message|
       if User.exists?(message.user_id_sender)
         @user_id_sender = User.find(message.user_id_sender)
-        a = ["id", "#{message.id}","message", "#{message.message}", "user_id_receiver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}", "user_img_sender", "#{get_user_photo(@user_id_sender)}",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+        a = ["id", "#{message.id}", "history_id", "#{message.history_id}", "message", "#{message.message}", "user_id_receiver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}", "user_img_sender", "#{get_user_photo(@user_id_sender)}",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
       else
-        a = ["id", "#{message.id}", "message", "#{message.message}","user_id_receiver", "#{message.user_id_receiver}", "user_id_sender","#{message.user_id_sender}", "user_name_sender", " ", "user_img_sender", " ",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+        a = ["id", "#{message.id}", "history_id", "#{message.history_id}","message", "#{message.message}","user_id_receiver", "#{message.user_id_receiver}", "user_id_sender","#{message.user_id_sender}", "user_name_sender", " ", "user_img_sender", " ",  "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
       end
       h = Hash[*a]
       @messages_list << h
@@ -25,6 +25,14 @@ class Api::MessagesController < ApplicationController
 
   # GET /messages/1
   def show
+    @messages = History.find(@message.history_id).messages
+    @messages_list = []
+    @messages.each do |message|
+      a = ["message", "#{message.message}", "user_id_receiver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}", "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+      h = Hash[*a]
+      @messages_list << h
+    end
+    render json: { messages: @messages_list, status: "ok" },status: 200 
   end
 
   # GET /messages/new
@@ -40,6 +48,10 @@ class Api::MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     if @message.save
+      if @message.history_id.blank?
+        @h =  History.create()
+        @message.update(history_id: @h.id)
+      end
       render json: { message: @message, status: "ok" },status: 200
     else
       render json: { message: @message.errors, status: "not_found" },status: 422
@@ -72,6 +84,6 @@ class Api::MessagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def message_params
-      params.require(:message).permit(:user_id_receiver, :user_id_sender, :message)
+      params.require(:message).permit(:user_id_receiver, :user_id_sender, :message, :history_id)
     end
 end
