@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
       self.confirmed_at  ||= Time.now
   end
   # img_uploader
-  mount_uploader :img, ImageUploader
+  mount_uploader :pic, ImageUploader
   
   # def set_provider
   #   puts self[:provider]

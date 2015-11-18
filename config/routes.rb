@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 		resources :messages
 		resources :remittents
 		get "home/:id/profile", to:"home#profile", as: "profile"
+		put "home/:id/edit_profile", to:"home#edit_profile", as: "edit_profile"
 	end
 end
