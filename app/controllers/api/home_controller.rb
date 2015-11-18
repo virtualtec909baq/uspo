@@ -3,6 +3,7 @@ class Api::HomeController < ApplicationController
 	include ApplicationHelper
 
 	def profile
+		@user = []
 		if user = User.find(params[:id]) 
 			unless user.rankings.count.zero?
 				ranking = (user.rankings.map{|r| r.ranking_value}.sum) / user.rankings.count
@@ -10,7 +11,8 @@ class Api::HomeController < ApplicationController
 				ranking = 0
 			end
 			user_array = ["name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"ranking", "#{ranking}" ,"email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
-			@user = Hash[*user_array]
+			user_hash = Hash[*user_array]
+			@user << user_hash
 			render json: { user: @user, status: "ok" },status: 200
 		else
 			record_not_found(error)
