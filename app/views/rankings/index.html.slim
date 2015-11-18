@@ -1,0 +1,27 @@
+h1 Listing rankings
+
+table
+  thead
+    tr
+      th User
+      th Description
+      th Ranking value
+      th User sender
+      th
+      th
+      th
+
+  tbody
+    - @rankings.each do |ranking|
+      tr
+        td = ranking.user_id
+        td = ranking.description
+        td = ranking.ranking_value
+        td = ranking.user_sender_id
+        td = link_to 'Show', ranking
+        td = link_to 'Edit', edit_ranking_path(ranking)
+        td = link_to 'Destroy', ranking, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Ranking', new_ranking_path

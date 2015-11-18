@@ -1,11 +1,16 @@
 class Api::HomeController < ApplicationController
+	include ApplicationHelper
 	def profile
-		@user = User.find(params[:id])
-		respond_to do |format|
-			format.json do
-				render :json => @user.to_json(:include => :couriers)
-			end
+		user = User.find(params[:id]) 
+		unless user.rankings.count.zero?
+			ranking = (user.rankings.map{|r| r.ranking_value}.sum) / user.rankings.count
+		else
+			ranking = 0
 		end
+		
+		user_array = ["name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"ranking", "#{ranking}" ,"email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
+		@user = Hash[*user_array]
+		render json: { user: @user, status: "ok" },status: 200
 	end
 
 	def edit_profile

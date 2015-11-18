@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118154847) do
+ActiveRecord::Schema.define(version: 20151118164637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20151118154847) do
     t.boolean  "status"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "rankings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.integer  "ranking_value"
+    t.integer  "user_sender_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "remittents", force: :cascade do |t|

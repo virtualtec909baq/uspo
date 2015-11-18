@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong User:
+  = @ranking.user_id
+p
+  strong Description:
+  = @ranking.description
+p
+  strong Ranking value:
+  = @ranking.ranking_value
+p
+  strong User sender:
+  = @ranking.user_sender_id
+
+= link_to 'Edit', edit_ranking_path(@ranking)
+'|
+= link_to 'Back', rankings_path

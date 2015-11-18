@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  description: MyText
+  ranking_value: 1
+  user_sender_id: 1
+
+two:
+  user_id: 1
+  description: MyText
+  ranking_value: 1
+  user_sender_id: 1
