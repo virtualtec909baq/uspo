@@ -13,6 +13,7 @@ class Api::RankingsController < ApplicationController
         rankings_hash = Hash[*rankings_array]
         @rankings_list << rankings_hash
       end
+    end
     render json: { rankings: @rankings_list, status: "ok" },status: 200
   end
 
