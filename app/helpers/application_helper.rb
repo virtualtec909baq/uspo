@@ -3,7 +3,7 @@ module ApplicationHelper
 		if user.pic.blank?
           	photo =  ActionController::Base.helpers.asset_path("placeholder.png")
         else
-          	photo = user.pic.file.url
+          	photo = user.pic.url
         end
         return photo
 	end
