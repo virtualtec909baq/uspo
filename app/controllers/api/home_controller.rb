@@ -22,6 +22,9 @@ class Api::HomeController < ApplicationController
 	def edit_profile
 		@user = []
 		user = User.find(params[:id]) 
+		unless params[:pic].blank?
+			user.pic = params[:pic]
+		end
 		if user.update(user_params)
 			user_array = ["id", "#{user.id}","name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
 			user_hash = Hash[*user_array]
