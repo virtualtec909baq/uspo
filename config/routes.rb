@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :rankings
   	root 'home#landing_page'
 	devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 	get :landing_page, to: 'home#landing_page', as: :landing_page
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
 		resources :couriers
 		resources :messages
 		resources :remittents
+		resources :rankings
 		get "home/:id/profile", to:"home#profile", as: "profile"
 		put "home/:id/edit_profile", to:"home#edit_profile", as: "edit_profile"
 	end
