@@ -31,7 +31,9 @@ class Api::RemittentsController < ApplicationController
 
   # PATCH/PUT /remittents/1
   def update
-    if @remittent.update(remittent_params)
+    @remittent = []
+    if remittent.update(remittent_params)
+      @remittent << remittent
       render json: { remittent: @remittent, status: "ok" },status: 200
     else 
       render json: { message: @remittent.errors, status: "not_found" },status: 422
@@ -40,7 +42,9 @@ class Api::RemittentsController < ApplicationController
 
   # DELETE /remittents/1
   def destroy
-    if @remittent.destroy
+    @remittent = []
+    if remittent.destroy
+      @remittent << remittent
       render json: { courier: @remittent, status: "ok" },status: 200
     else 
       render json: { message: "remittent not_found", status: "not_found" },status: 422

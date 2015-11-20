@@ -40,12 +40,14 @@ class Api::MessagesController < ApplicationController
   # POST /messages
   
   def create
-    @message = Message.new(message_params)
-    if @message.save
-      if @message.history_id.blank?
-        @h =  History.create()
-        @message.update(history_id: @h.id)
+    message = Message.new(message_params)
+    @message = []
+    if message.save
+      if message.history_id.blank?
+          @h =  History.create()
+        message.update(history_id: @h.id)
       end
+      @message << message
       render json: { message: @message, status: "ok" },status: 200
     else
       render json: { message: @message.errors, status: "not_found" },status: 422
