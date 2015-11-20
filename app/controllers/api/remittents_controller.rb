@@ -31,10 +31,10 @@ class Api::RemittentsController < ApplicationController
 
   # PATCH/PUT /remittents/1
   def update
-    @remittent = []
-    if remittent.update(remittent_params)
-      @remittent << remittent
-      render json: { remittent: @remittent, status: "ok" },status: 200
+    remittent = []
+    if @remittent.update(remittent_params)
+      remittent << @remittent
+      render json: { remittent: remittent, status: "ok" },status: 200
     else 
       render json: { message: @remittent.errors, status: "not_found" },status: 422
     end
