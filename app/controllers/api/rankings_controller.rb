@@ -19,8 +19,10 @@ class Api::RankingsController < ApplicationController
 
   # POST /rankings
   def create
-    @ranking = Ranking.new(ranking_params)
-    if @ranking.save
+    ranking = Ranking.new(ranking_params)
+    @ranking = []
+    if ranking.save
+      @ranking << ranking
       render json: { ranking: @ranking, status: "ok" },status: 200
     else 
       render json: { message: @ranking.errors, status: "not_found" },status: 422
