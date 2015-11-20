@@ -1,14 +1,14 @@
 class Api::RankingsController < ApplicationController
   before_action :set_ranking, only: [:update]
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-
+  include ApplicationHelper
   def show
     user = User.find(params[:id])
-    rankings = user.rankings.order(created_at: :asc)
+    @rankings = user.rankings.order(created_at: :asc)
     @rankings_list = []
     @rankings.each do |ranking|
-      if User.exists?(user_sender_id)
-        sender = User.find(user_sender_id)
+      if User.exists?(ranking.user_sender_id)
+        sender = User.find(ranking.user_sender_id)
         rankings_array = ["id", "#{ranking.id}", "description", "#{ranking.description}", "ranking_value", "#{ranking.ranking_value}","pic", "#{get_user_photo(sender)}","user_name", "#{sender.name}" ,"created_at", "#{ranking.created_at.strftime("%B %d %Y %I:%M%p")}"]
         rankings_hash = Hash[*rankings_array]
         @rankings_list << rankings_hash
