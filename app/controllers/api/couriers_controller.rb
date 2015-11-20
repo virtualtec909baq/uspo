@@ -21,7 +21,9 @@ class Api::CouriersController < ApplicationController
 
   # GET /couriers/1
   def show
-    render json: { courier: @courier, status: "ok" },status: 200
+    courier = []
+    courier << @courier
+    render json: { courier: courier, status: "ok" },status: 200
   end
 
   # POST /couriers

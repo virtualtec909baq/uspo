@@ -9,11 +9,12 @@ Rails.application.routes.draw do
 	resources :messages
 	
 	namespace :api , defaults: { format: :json } do
-		resources :locations, only: [:index]
 		resources :couriers
-		resources :messages
 		resources :remittents
 		resources :rankings
+		resources :locations, only: [:index]
+		resources :packages, only: [:index, :create, :show]
+		resources :messages, only: [:index, :create, :show]
 		get "home/:id/profile", to:"home#profile", as: "profile"
 		put "home/:id/edit_profile", to:"home#edit_profile", as: "edit_profile"
 	end
