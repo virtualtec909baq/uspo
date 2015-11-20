@@ -27,8 +27,10 @@ class Api::CouriersController < ApplicationController
   # POST /couriers
   
   def create
-    @courier = Courier.new(courier_params)
-    if @courier.save
+    @courier = []
+    courier = Courier.new(courier_params)
+    if courier.save
+      @courier << courier
       render json: { courier: @courier, status: "ok" },status: 200
     else 
       render json: { courier: @courier.errors, status: "not_found" },status: 422
