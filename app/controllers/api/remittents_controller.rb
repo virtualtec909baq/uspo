@@ -45,7 +45,7 @@ class Api::RemittentsController < ApplicationController
     @remittent = []
     if remittent.destroy
       @remittent << remittent
-      render json: { courier: @remittent, status: "ok" },status: 200
+      render json: { remittent: @remittent, status: "ok" },status: 200
     else 
       render json: { message: "remittent not_found", status: "not_found" },status: 422
     end
@@ -55,7 +55,6 @@ class Api::RemittentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_remittent
       if @remittent = Remittent.find(params[:id])
-        render json: { courier: @remittent, status: "ok" },status: 200
       else 
         record_not_found(error)
       end
