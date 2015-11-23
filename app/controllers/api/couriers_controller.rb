@@ -52,9 +52,7 @@ class Api::CouriersController < ApplicationController
 
   # DELETE /couriers/1
   def destroy
-    @courier = []
     if @courier.destroy
-      @courier << courier
       render json: { courier: @courier, status: "ok" },status: 200
     else 
       render json: { message: "courier not_found", status: "not_found" },status: 422

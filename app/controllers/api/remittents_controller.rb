@@ -42,9 +42,7 @@ class Api::RemittentsController < ApplicationController
 
   # DELETE /remittents/1
   def destroy
-    @remittent = []
     if remittent.destroy
-      @remittent << remittent
       render json: { remittent: @remittent, status: "ok" },status: 200
     else 
       render json: { message: "remittent not_found", status: "not_found" },status: 422
