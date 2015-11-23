@@ -31,10 +31,10 @@ class Api::RankingsController < ApplicationController
 
   # PATCH/PUT /rankings/1
   def update
-    @ranking = []
-    if ranking.update(ranking_params)
-      @ranking << ranking
-      render json: { ranking: @ranking, status: "ok" },status: 200
+    ranking = []
+    if @ranking.update(ranking_params)
+      ranking << @ranking
+      render json: { ranking: ranking, status: "ok" },status: 200
     else 
       render json: { message: @ranking.errors, status: "not_found" },status: 422
     end
