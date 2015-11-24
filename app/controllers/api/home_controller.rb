@@ -20,13 +20,13 @@ class Api::HomeController < ApplicationController
 	end
 
 	def edit_profile
-		@user = []
-		user = User.find(params[:id]) 
-		if user.update(user_params)
-			user_array = ["id", "#{user.id}","name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
+		user = []
+		@user = User.find(params[:id]) 
+		if @user.update(user_params)
+			user_array = ["id", "#{@user.id}","name", "#{@user.name} #{@user.last_name}","pic","#{get_user_photo(@user)}","phone", "#{@user.phone}","age", "#{@user.age}" ,"email", "#{@user.email}", "bio" ,"#{@user.bio}", "city", "#{@user.city}", "fb", "#{@user.fb}", "tw", "#{@user.tw}", "int", "#{@user.int}"]
 			user_hash = Hash[*user_array]
-			@user << user_hash
-			render json: { user: @user, status: "ok" },status: 200
+			user << user_hash
+			render json: { user: user, status: "ok" },status: 200
 		else
 			render json: { user: @user.errors, status: "not_found" },status: 422
 		end
