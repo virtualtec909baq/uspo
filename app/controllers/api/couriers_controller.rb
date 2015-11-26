@@ -41,10 +41,10 @@ class Api::CouriersController < ApplicationController
 
   # PATCH/PUT /couriers/1
   def update
-    @courier = []
-    if courier.update(courier_params)
-      @courier << courier
-      render json: { courier: @courier, status: "ok" },status: 200
+    courier = []
+    if @courier.update(courier_params)
+      courier << @courier
+      render json: { courier: courier, status: "ok" },status: 200
     else 
       render json: { message: @courier.errors, status: "not_found" },status: 422
     end
