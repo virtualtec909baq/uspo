@@ -1,11 +1,16 @@
 class Api::PackagesController < ApplicationController
 	before_action :set_package, only: [:show, :edit, :update, :destroy]
 	
+	def index
+		@packages = Package.all
+		render json: { packages: @packages, status: "ok" },status: 200
+	end
+
 	# GET /remittents/1
 	def show
-		remittent = []
-		remittent << @remittent
-		render json: { remittent: remittent, status: "ok" },status: 200
+		package = []
+		package << @package
+		render json: { package: package, status: "ok" },status: 200
 	end
 
 	# POST /packages
