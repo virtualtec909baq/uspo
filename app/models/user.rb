@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :couriers
   has_many :remittents
   has_many :rankings
+  has_many :packages
   
   def skip_confirmed_at
       self.confirmed_at  ||= Time.now

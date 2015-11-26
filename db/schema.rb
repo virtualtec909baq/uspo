@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120211350) do
+ActiveRecord::Schema.define(version: 20151126153646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,8 +63,10 @@ ActiveRecord::Schema.define(version: 20151120211350) do
     t.integer  "courier_id"
     t.integer  "remittent_id"
     t.boolean  "status"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.boolean  "acceted_request"
+    t.integer  "user_id"
   end
 
   create_table "packege_types", force: :cascade do |t|

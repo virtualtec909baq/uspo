@@ -15,6 +15,9 @@ class Api::RemittentsController < ApplicationController
 
   # GET /remittents/1
   def show
+    remittent = []
+    remittent << @remittent
+    render json: { remittent: remittent, status: "ok" },status: 200
   end
 
   # POST /remittents

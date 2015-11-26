@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 		resources :remittents
 		resources :rankings
 		resources :locations, only: [:index]
-		resources :packages, only: [:index, :create, :show]
+		resources :packages
 		resources :messages, only: [:index, :create, :show]
 		get "home/:id/profile", to:"home#profile", as: "profile"
 		put "home/:id/edit_profile", to:"home#edit_profile", as: "edit_profile"
