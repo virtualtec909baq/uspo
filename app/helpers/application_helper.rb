@@ -7,4 +7,12 @@ module ApplicationHelper
         end
         return photo
 	end
+	def get_package_photo(remittent)
+		if remittent.packege_img.blank?
+          	photo =  ActionController::Base.helpers.asset_path("placeholder_remittent.png")
+        else
+          	photo = remittent.packege_img.url
+        end
+        return photo
+	end
 end
