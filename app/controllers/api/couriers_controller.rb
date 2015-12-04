@@ -12,7 +12,7 @@ class Api::CouriersController < ApplicationController
     end
     @couriers_list = []
     @couriers.each do |courier|
-      a = ["id", "#{courier.id}", "user_id", "#{courier.user_id}", "user", "#{courier.user.name}","pic", "#{get_user_photo(courier.user)}" , "trip_description", "#{courier.trip_description}", "location_arrived", "#{courier.location_arrived}", "location_departure", "#{courier.location_departure}", "time_arriv", "#{courier.time_arriv.strftime("%B %d %Y %I:%M%p")}", "departure_time", "#{courier.departure_time.strftime("%b %d %I:%M%p")}"]
+      a = ["id", "#{courier.id}", "user_id", "#{courier.user_id}", "user", "#{courier.user.name}","img_ticket", "#{get_courier_photo(courier)}","pic", "#{get_user_photo(courier.user)}" , "trip_description", "#{courier.trip_description}", "location_arrived", "#{courier.location_arrived}", "location_departure", "#{courier.location_departure}", "time_arriv", "#{courier.time_arriv.strftime("%B %d %Y %I:%M%p")}", "departure_time", "#{courier.departure_time.strftime("%b %d %I:%M%p")}"]
       h = Hash[*a]
       @couriers_list << h
     end
