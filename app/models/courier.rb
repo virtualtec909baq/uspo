@@ -4,4 +4,7 @@ class Courier < ActiveRecord::Base
   	belongs_to :user
   	validates :time_arriv, presence: true
   	validates :departure_time, presence: true
+
+  	# img_uploader
+  	mount_uploader :img_ticket, ImageUploader
 end
