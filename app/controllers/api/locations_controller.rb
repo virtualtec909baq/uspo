@@ -10,10 +10,10 @@ class Api::LocationsController < ApplicationController
     end
     @locations_list = []
     @locations.each do |location|
-      a = ["id", "#{location.id}", "description", "#{location.description}", "location", "location.location.description"]
+      a = ["id", "#{location.id}", "city", "#{location.description}", "location", "#{location.location.description}"]
       h = Hash[*a]
-      @couriers_list << h
+      @locations_list << h
     end
-    render json: { locations: @locations, status: "ok" },status: 200
+    render json: { locations: @locations_list, status: "ok" },status: 200
   end
 end
