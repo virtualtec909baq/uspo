@@ -8,10 +8,6 @@ class Api::LocationsController < ApplicationController
     else
       @locations = City.all.order(description: :asc)
     end
-    respond_to do |format|
-      format.json do
-        render :json => @locations.to_json(:include => :cities)
-      end
-    end
+    render json: { locations: @locations, status: "ok" },status: 200
   end
 end
