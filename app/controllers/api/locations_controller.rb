@@ -3,10 +3,10 @@ class Api::LocationsController < ApplicationController
 	# GET /locations.json
 	def index
     if params[:q]
-      @search = Location.ransack(params[:q])
-      @locations = @search.result.includes(:cities).order(description: :asc)
+      @search = City.ransack(params[:q])
+      @locations = @search.result.order(description: :asc)
     else
-      @locations = Location.all.includes(:cities).order(description: :asc)
+      @locations = City.all.order(description: :asc)
     end
     respond_to do |format|
       format.json do
