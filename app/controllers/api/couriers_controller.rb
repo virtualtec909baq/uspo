@@ -35,7 +35,7 @@ class Api::CouriersController < ApplicationController
       @courier << courier
       render json: { courier: @courier, status: "ok" },status: 200
     else 
-      render json: { courier: @courier.errors, status: "not_found" },status: 422
+      render json: { courier: courier.errors, status: "not_found" },status: 422
     end
   end
 
