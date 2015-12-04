@@ -14,7 +14,10 @@ class HomeController < ApplicationController
   	@data = (1..3).map do |i|{name: data.first[i],data: data[1..-1].map { |x| [ x[0], x[i] ] }}end
 
   end
-  
+  def profile
+     
+  end
+
   def landing_page
   end
   
