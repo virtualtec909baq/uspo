@@ -8,6 +8,12 @@ class Api::LocationsController < ApplicationController
     else
       @locations = City.all.order(description: :asc)
     end
+    @locations_list = []
+    @locations.each do |location|
+      a = ["id", "#{location.id}", "description", "#{location.description}", "location", "location.location.description"]
+      h = Hash[*a]
+      @couriers_list << h
+    end
     render json: { locations: @locations, status: "ok" },status: 200
   end
 end
