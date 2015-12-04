@@ -15,4 +15,12 @@ module ApplicationHelper
         end
         return photo
 	end
+  def get_courier_photo(courier)
+    if courier.img_ticket.blank?
+            photo =  ActionController::Base.helpers.asset_path("placeholder-boarding.png")
+        else
+            photo = courier.img_ticket.url
+        end
+        return photo
+  end
 end
