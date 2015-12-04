@@ -6,7 +6,7 @@ class Api::HomeController < ApplicationController
 		@user = []
 		if user = User.find(params[:id]) 
 			unless user.rankings.count.zero?
-				ranking = (user.rankings.map{|r| r.ranking_value}.sum) / user.rankings.count
+				ranking = (user.rankings.map{|r| r.ranking_value}.sum) / user.rankings.count.to_f
 			else
 				ranking = 0
 			end
