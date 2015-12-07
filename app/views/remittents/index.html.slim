@@ -15,12 +15,10 @@ ol.breadcrumb
         th id
         th name
         th email
-        
-
     tbody
       - @users.each do |user|
         tr
-          td = user.id
+          td = link_to user.id, profile_path(user)
           td = user.name
           td = user.email
          

@@ -1,15 +1,24 @@
-= form_for @location do |f|
-  - if @location.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@location.errors.count, "error")} prohibited this location from being saved:"
-      ul
-        - @location.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :cd
-    = f.text_field :cd
-  .actions = f.submit
+/! Modal
+#myModal.modal.fade role="dialog"  
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4#myModalLabel.modal-title CREATE A LOCATION
+      .modal-body
+        = form_for @location , url: locations_path(@location), :remote => true , method: :post do |f| 
+            = f.add_nested_fields_link :cities, "Add cities"
+            #erros
+            .field
+              = f.label :description 
+              = f.text_field :description, class: 'form-control' 
+              br
+              = f.label :description 
+              = f.text_field :description, class: 'form-control' 
+              br
+              = f.nested_fields_for :cities do |ff|
+                 label for="description"  City Name: 
+                 = f.text_field :description, class: 'form-control'
+                 br
+              = f.submit :class =>"btn btn-primary btn-block" 

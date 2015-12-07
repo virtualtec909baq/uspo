@@ -2,6 +2,12 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
+Rails.application.config.assets.precompile += %w( /landing/style.css )
+Rails.application.config.assets.precompile += %w( bg-11.jpg )
+Rails.application.config.assets.precompile += %w( fontawesome-webfont.eot )
+Rails.application.config.assets.precompile += %w( fontawesome-webfont.woff )
+Rails.application.config.assets.precompile += %w( fontawesome-webfont.ttf )
+
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

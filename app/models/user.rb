@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   #  self[:provider] = "email" if self[:provider].blank?
   # end
   
-  def set_uid
-    self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
-  end
+  # def set_uid
+  #   self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
+  # end
 end

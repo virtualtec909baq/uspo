@@ -1,4 +1,6 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form login-form'} ) do |f|
+  - flash.each do |name, msg| 
+    = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
   .login-wrap
     p.login-img
       i.fa.fa-lock.fa-4
@@ -10,8 +12,9 @@
       span.input-group-addon
         i.fa.fa-lock
       = f.password_field :password, autocomplete: "off", :placeholder =>"password", :class =>"form-control"
-    label.checkbox
-      input type="checkbox" value="remember-me" /
-      | Remember me
-    button.btn.btn-danger.btn-lg.btn-block type="submit"  Login
+    hr
+    = link_to "Forgot your password?", new_password_path(resource_name)
+    br 
+    br 
+    button.btn.btn-info.btn-lg.btn-block type="submit"  Login
   

@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
 	# GET /locations.json
 	def index
     @search = Location.ransack(params[:q])
+    @location = Location.new()
     @locations = @search.result.order(created_at: :desc).page(params[:page])
     respond_to do |format|
       format.html
@@ -28,18 +29,20 @@ class LocationsController < ApplicationController
 
 	# POST /locations
 	# POST /locations.json
-	def create
-		@location = Location.new(location_params)
-		respond_to do |format|
+  def create
+    @location = Location.new(location_params)
+    respond_to do |format|
       if @location.save
-        format.html { redirect_to locations_path, notice: 'Ubicacion creada' }
+        format.js
+        format.html { redirect_to admin_colors_path, notice: 'location was create' }
         format.json { render :show, status: :created, location: @location }
       else
-        format.html { render :new }
+        format.js
+        format.html { render :new } 
         format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
-	end
+  end
 
 	# PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json

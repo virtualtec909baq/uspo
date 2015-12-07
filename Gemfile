@@ -30,11 +30,11 @@ gem "chartkick"
 gem 'groupdate'
 gem 'faker'
 gem 'unicorn'
-gem 'city-state'
-gem 'bower-rails'
 gem 'cancancan', '~> 1.10'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'carrierwave'
+gem 'nested_form_fields'
+gem 'quill-rails', '~> 0.1.0'
 
 group :test do
   gem 'capybara'

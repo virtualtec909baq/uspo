@@ -16,22 +16,24 @@ html lang="en"
     = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
     = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
-    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    / = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "//www.google.com/jsapi", "chartkick" 
     = javascript_include_tag "application"
 
 
   - if params[:controller] == "sessions" or params[:controller] == "devise/passwords"   
     body.login-img3-body
+      = yield
   - else
     body
       - unless params[:controller] == "sessions" or params[:controller] == "devise/passwords" or (params[:controller] == "home" and params[:action] == "landing_page")
         = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
             = menu_group do
-                = menu_item t('.title'), root_path 
+                = menu_item t('.title'), index_path 
                 = menu_item t('.locations'), locations_path
                 = menu_item t('.users'), remittents_path
                 = menu_item t('.packege'), root_path
+                = menu_item t('.settings'), settins_path
             - if current_user
               = menu_group pull: :right do
                 = drop_down "Messages" do

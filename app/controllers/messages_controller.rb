@@ -3,11 +3,22 @@ class MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.all
+    if params[:sender]
+      @messages = Message.where(user_id_sender: current_user).order(created_at: :desc).page(params[:page])
+      @count = @messages.count
+    elsif params[:trash]
+      @messages = Message.where(user_id_receiver: current_user,trash: true ).order(created_at: :desc).page(params[:page])
+      @count = @messages.count
+    else
+      @messages = Message.where(user_id_receiver: current_user).order(created_at: :desc).page(params[:page])
+      @count = @messages.count
+    end
+    @count_total = Message.where(user_id_receiver: current_user).count
   end
 
   # GET /messages/1
   def show
+    @user = User.find(@message.user_id_sender)
   end
 
   # GET /messages/new

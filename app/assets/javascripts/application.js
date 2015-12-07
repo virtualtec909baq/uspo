@@ -17,6 +17,8 @@
 //= require twitter/bootstrap/collapse
 //= require twitter/bootstrap/tab
 //= require twitter/bootstrap/carousel
+//= require nested_form_fields
+//= require quill
 
 
 

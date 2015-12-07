@@ -163,7 +163,7 @@ nav.navbar.fixed-to-top{
 
 header{
 	height: 700px;
-	background: url('/assets/nepal.png');
+	
 	background-color: white!important;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -251,7 +251,6 @@ header .carousel-indicators li {
 	overflow: hidden;
 	padding: 150px 0px 150px 0px;
 	min-height: 400px;
-	background: url('/assets/dunes.png') no-repeat;
 	background-position: center top;
 	background-repeat: repeat-x;
 	color: white;

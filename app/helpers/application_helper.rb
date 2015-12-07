@@ -23,4 +23,7 @@ module ApplicationHelper
         end
         return photo
   end
+  def get_landing_photo(setting)
+      return  photo = setting.image.url
+  end
 end

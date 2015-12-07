@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
       if params[:json]
         format.json {render :json => {:status => :ok,:user => current_user,}}
       else
-        format.html { redirect_to root_path }
+        format.html { redirect_to index_path }
       end
    end
   end

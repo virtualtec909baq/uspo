@@ -11,6 +11,8 @@ en:
       locations: "Locations"
       contact: "Contact"
       users: "Users"
+      packege: "Package"
+      settings: "Settings"
       couriers: "Couriers"
       singin: "Sign In"
       singup: "Sign Up"

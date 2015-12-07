@@ -1,0 +1,16 @@
+= form_for @settin do |f|
+  .field
+    = f.label :key
+   	input#disabledInput.form-control disabled="" placeholder=("#{@settin.key}") type="text" /
+  
+  .field
+    - unless @settin.has_image
+        br
+        = f.label :value
+        = quill_editor nil, { name: 'settin[value]', id: 'settin_value' , value: @settin.value, class: 'form-control' }
+    - else
+        br
+        = f.file_field :image
+  
+  br
+  = f.submit :class =>"btn btn-primary btn-block" 

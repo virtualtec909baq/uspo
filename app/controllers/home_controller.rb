@@ -20,6 +20,16 @@ class HomeController < ApplicationController
 
   def landing_page
   end
+
+  def privacy
+  end
+
+  def terms
+  end
+  
+  def service_support
+  end
+  
   
   def users_index
     @user = User.all

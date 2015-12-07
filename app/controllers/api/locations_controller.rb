@@ -10,7 +10,7 @@ class Api::LocationsController < ApplicationController
     end
     @locations_list = []
     @locations.each do |location|
-      a = ["id", "#{location.id}", "city", "#{location.description}-#{location.location.description}"]
+      a = ["id", "#{location.id}", "city", "#{location.description}-#{location.location.cd}"]
       h = Hash[*a]
       @locations_list << h
     end

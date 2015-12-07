@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Key:
+  = @settin.key
+p
+  strong Value:
+  = @settin.value
+
+= link_to 'Edit', edit_settin_path(@settin)
+'|
+= link_to 'Back', settins_path

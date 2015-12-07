@@ -2,11 +2,16 @@ Rails.application.routes.draw do
   	root 'home#landing_page'
 	devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 	get :landing_page, to: 'home#landing_page', as: :landing_page
-	get :users_index, to: 'home#users_index', as: :users_index
+	get :index, to: 'home#index', as: :index
+	get :privacy, to: 'home#privacy', as: :privacy
+	get :terms, to: 'home#terms', as: :terms
+	get :service_support, to: 'home#service_support', as: :service_support
+	get "home/:id/profile", to:"home#profile", as: "profile"
 	resources :couriers, only: [:index, :show]
 	resources :remittents, only: [:index, :show]
 	resources :locations, :except => [:show]
 	resources :messages
+	resources :settins
 	
 	namespace :api , defaults: { format: :json } do
 		resources :couriers

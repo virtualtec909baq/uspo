@@ -1,0 +1,25 @@
+ol.breadcrumb
+  li
+    a href="#{ root_path}" 
+      span.fa.fa-wrench
+  li.active Settings
+
+.ibox-title
+  table.table-responsive.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th Key
+        th Value
+        
+    tbody
+      - @settins.each do |settin|
+        tr
+          td = settin.key
+          - if settin.has_image
+            td 
+             = settin.image.url
+          - else
+            td 
+              = settin.value
+          td = link_to 'Edit', edit_settin_path(settin)
+          
