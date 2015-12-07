@@ -10,7 +10,7 @@ class Api::HomeController < ApplicationController
 			else
 				ranking = 0
 			end
-			user_array = ["id", "#{user.id}","name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"ranking", "#{ranking}" ,"occupation", "#{user.occupation}","email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
+			user_array = ["id", "#{user.id}","name", "#{user.name} #{user.last_name}","pic","#{get_user_photo(user)}","phone", "#{user.phone}","age", "#{user.age}" ,"ranking", "#{ranking.round(1)}" ,"occupation", "#{user.occupation}","email", "#{user.email}", "bio" ,"#{user.bio}", "city", "#{user.city}", "fb", "#{user.fb}", "tw", "#{user.tw}", "int", "#{user.int}"]
 			user_hash = Hash[*user_array]
 			@user << user_hash
 			render json: { user: @user, status: "ok" },status: 200
