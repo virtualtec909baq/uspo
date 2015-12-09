@@ -7,6 +7,8 @@ class Api::CouriersController < ApplicationController
     if params[:q]
       @search = Courier.ransack(params[:q])
       @couriers = @search.result.order(created_at: :desc)
+    elsif params[:profile]
+      @couriers = Courier.where(user_id: params[:current_user])
     else
       @couriers = Courier.all.order(created_at: :desc)
     end

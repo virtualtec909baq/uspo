@@ -8,6 +8,8 @@ class Api::RemittentsController < ApplicationController
     if params[:q]
       @search = Remittent.ransack(params[:q])
       @remittents = @search.result.order(created_at: :desc)
+    elsif params[:profile]
+      @remittents = Remittent.where(user_id: params[:current_user])
     else
       @remittents = Remittent.all.order(created_at: :desc)
     end

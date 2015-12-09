@@ -2,7 +2,13 @@ class Api::PackagesController < ApplicationController
 	before_action :set_package, only: [:show, :edit, :update, :destroy]
 	
 	def index
+	  if params[:packages]
+      	@packages = Package.where("(courier_id = ? OR remittent_id = ? AND status = ?)", params[:current_user], params[:current_user], true)
+      elsif params[:history]
+      	@packages = Package.where("(courier_id = ? OR remittent_id = ? AND status = ?)", params[:current_user], params[:current_user], false)
+      else
 		@packages = Package.all
+	  end
 		render json: { packages: @packages, status: "ok" },status: 200
 	end
 
