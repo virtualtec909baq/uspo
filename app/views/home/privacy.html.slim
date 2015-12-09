@@ -1,8 +1,8 @@
-.panel.panel-default style=("margin-top: 60px") 
+.panel.panel-default style=("margin-top: 10px") 
   .panel-body
     article.markdown-body.entry-content itemprop="mainContentOfPage" 
       h1 style=("text-align: center;")
         a#user-content-privacy-policy-template.anchor aria-hidden="true" href="#privacy-policy-template" 
         | Privacy Policy Template
       hr
-        
+        = simple_format Settin.find_by_key("privacy policy").value

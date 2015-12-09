@@ -3,7 +3,8 @@ class SettinsController < ApplicationController
 
   # GET /settins
   def index
-    @settins = Settin.all.order(created_at: :asc)
+    @settins1 = Settin.where(:id => 1..21)
+    @settins2 = Settin.last(3) 
   end
 
   # GET /settins/1

@@ -4,22 +4,18 @@ ol.breadcrumb
       span.fa.fa-wrench
   li.active Settings
 
-.ibox-title
-  table.table-responsive.table.table-striped.table-bordered.table-hover
-    thead
-      tr
-        th Key
-        th Value
-        
-    tbody
-      - @settins.each do |settin|
-        tr
-          td = settin.key
-          - if settin.has_image
-            td 
-             = settin.image.url
-          - else
-            td 
-              = settin.value
-          td = link_to 'Edit', edit_settin_path(settin)
+div
+  /! Nav tabs
+  ul.nav.nav-tabs role="tablist" 
+    li.active role="presentation" 
+      a aria-controls="home" data-toggle="tab" href="#home" role="tab"  Setting Landing Page
+    li role="presentation" 
+      a aria-controls="profile" data-toggle="tab" href="#profile" role="tab"  Settings Terms
+  /! Tab panes
+  .tab-content
+    #home.tab-pane.active role="tabpanel"  
+      == render 'index1'
+    #profile.tab-pane role="tabpanel" 
+      == render 'index2' 
+
           
