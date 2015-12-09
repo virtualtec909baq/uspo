@@ -27,35 +27,42 @@ html lang="en"
   - else
     body
       - unless params[:controller] == "sessions" or params[:controller] == "devise/passwords" or (params[:controller] == "home" and params[:action] == "landing_page")
-        = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
-            = menu_group do
-                = menu_item t('.title'), index_path 
-                = menu_item t('.locations'), locations_path
-                = menu_item t('.users'), remittents_path
-                = menu_item t('.packege'), root_path
-                = menu_item t('.settings'), settins_path
-            - if current_user
-              = menu_group pull: :right do
-                = drop_down "Messages" do
-                  li
-                    .dropdown-messages-box
-                      a.pull-left href="profile.html" 
-                        img.img-circle.messages-img alt="image" src="https://placehold.it/50x50" /
-                      .messages
-                        small.pull-right 46h ago
-                        strong Mike Loreipsum
-                        br/
-                        | started following
-                          strong Monica Smith
-                        br/
-                        small.text-muted 3 days ago at 7:58 pm - 10.06.2014
-                  hr
-                  .text-center.link-block
-                    a href="#{messages_path}" 
-                      i.fa.fa-envelope
-                      | Read All Messages
+        - if (params[:controller] == "home" and params[:action] == "service_support") or  (params[:controller] == "home" and params[:action] == "terms") or (params[:controller] == "home" and params[:action] == "privacy")
+          = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
+                = menu_group do
+                    = menu_item t('.pri'), privacy_path 
+                    = menu_item t('.terms'), terms_path
+                    = menu_item t('.service_support'), service_support_path
+        - else
+            = nav_bar fixed: :top,responsive: true, brand: "USPO" do 
+                = menu_group do
+                    = menu_item t('.title'), index_path 
+                    = menu_item t('.locations'), locations_path
+                    = menu_item t('.users'), remittents_path
+                    = menu_item t('.packege'), root_path
+                    = menu_item t('.settings'), settins_path
+                - if current_user
+                  = menu_group pull: :right do
+                    = drop_down "Messages" do
+                      li
+                        .dropdown-messages-box
+                          a.pull-left href="profile.html" 
+                            img.img-circle.messages-img alt="image" src="https://placehold.it/50x50" /
+                          .messages
+                            small.pull-right 46h ago
+                            strong Mike Loreipsum
+                            br/
+                            | started following
+                              strong Monica Smith
+                            br/
+                            small.text-muted 3 days ago at 7:58 pm - 10.06.2014
+                      hr
+                      .text-center.link-block
+                        a href="#{messages_path}" 
+                          i.fa.fa-envelope
+                          | Read All Messages
 
-                = menu_item "Log Out", destroy_user_session_path, :method => :delete, :class => 'logout'
+                    = menu_item "Log Out", destroy_user_session_path, :method => :delete, :class => 'logout'
       - unless params[:controller] == "home" and params[:action] == "landing_page"
         .container
           .row

@@ -8,6 +8,9 @@ en:
   layouts:
     application:
       title: "Index"
+      pri: "Privacy Policy"
+      terms: "Terms"
+      service_support: "Service Support"
       locations: "Locations"
       contact: "Contact"
       users: "Users"

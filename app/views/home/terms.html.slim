@@ -5,4 +5,4 @@
         a#user-content-privacy-policy-template.anchor aria-hidden="true" href="#privacy-policy-template" 
         | Terms and Conditions
       hr
-        
+       = simple_format Settin.find_by_key("terms").value  
