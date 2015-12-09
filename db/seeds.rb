@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Settin.create(key: "title3", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title2", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "paragraph", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title4", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title5", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title6", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title7", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title8", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title9", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title10", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title11", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title12", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title13", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title14", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title15", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "title16", value: "close on color selection example Added", has_image: false)
+Settin.create(key: "image", has_image: true)
+Settin.create(key: "image_2", has_image: true)
+Settin.create(key: "image_3", has_image: true)
+Settin.create(key: "image_4", has_image: true)
+Settin.create(key: "image_5", has_image: true)
+
+
