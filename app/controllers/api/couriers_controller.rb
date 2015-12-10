@@ -2,6 +2,7 @@ class Api::CouriersController < ApplicationController
   before_action :set_courier, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   include ApplicationHelper
+  include ActionView::Helpers::DateHelper
   # GET /couriers
   def index
     if params[:q]
@@ -24,9 +25,22 @@ class Api::CouriersController < ApplicationController
   # GET /couriers/1
   def show
     courier = []
-    courier << @courier
-    render json: { courier: courier, status: "ok" },status: 200
-  end
+    users = []
+    if params[:profile]
+      a = ["id", "#{@courier.id}", "packages_count", "#{Package.where(courier_id: @courier.id).count}","user_id", "#{@courier.user_id}", "trip_description", "#{@courier.trip_description}", "img_ticket", "#{@courier.img_ticket}", "location_arrived", "#{@courier.location_arrived}", "location_departure", "#{@courier.location_departure}", "departure_time", "#{@courier.departure_time.strftime("%b %d %I:%M%p")} ", "time_arrive", "#{@courier.time_arriv.strftime("%b %d %I:%M%p")}"]
+      h = Hash[*a]
+      courier << h
+      Package.where(courier_id: @courier.id).each do |u|
+        array_user = ["id", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic" , "#{u.courier.user.pic}", "created_at", "#{time_ago_in_words(u.created_at)}"]
+        h_user = Hash[*array_user]
+        users << h_user
+      end
+      render json: { courier: courier, users: users , status: "ok" },status: 200
+    else
+      courier << @courier
+      render json: { courier: courier, status: "ok" },status: 200
+    end
+  end    
 
   # POST /couriers
   
