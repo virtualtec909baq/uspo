@@ -15,7 +15,9 @@ class HomeController < ApplicationController
 
   end
   def profile
-     
+     @user = User.find(params[:id])
+     @travels = Courier.where(user_id: params[:id])
+     @packages = Remittent.where(user_id: params[:id])
   end
 
   def landing_page

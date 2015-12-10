@@ -1,0 +1,39 @@
+ol.breadcrumb
+  li
+    a href="#{ root_path}" 
+      span.fa.fa-user
+  li.active #{@user.name}
+.ibox-title
+	.row
+		.col-md-4
+			img.img-responsive alt=("Responsive image") class="img-thumbnail" src="#{@user.pic.url}"
+		.col-md-8
+			.name
+				h2 
+        			= @user.name
+        		    | member since #{@user.created_at.strftime("%b %d %Y")}
+        	br
+	    	.row 
+	    		.ibox-title
+		    		.col-md-6
+		    			.travels
+		    				h5
+		    					| TRAVELS
+		    					hr
+		    			table.table-responsive.table.table-striped.table-bordered.table-hover
+						    thead
+						      tr
+						        th Description
+						        th Cd
+						        th colspan="2" 
+
+						    tbody
+						      - @travels.each do |travel|
+						        tr
+					
+					.col-md-6
+		    			.packages
+		    				h5
+		    					| PACKAGES
+		    					hr
+	    					
