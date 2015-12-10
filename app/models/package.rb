@@ -3,4 +3,9 @@ class Package < ActiveRecord::Base
 	belongs_to :courier
 	belongs_to :remittent
 	belongs_to :user
+	after_create :init
+
+	def init
+		self.status  ||= false
+  	end
 end
