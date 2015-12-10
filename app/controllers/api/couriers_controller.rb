@@ -31,7 +31,7 @@ class Api::CouriersController < ApplicationController
       h = Hash[*a]
       courier << h
       Package.where(courier_id: @courier.id).each do |u|
-        array_user = ["id", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic" , "#{u.courier.user.pic}", "created_at", "#{time_ago_in_words(u.created_at)}"]
+        array_user = ["id", "#{u.id}", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic" , "#{u.courier.user.pic}", "created_at", "#{time_ago_in_words(u.created_at)}"]
         h_user = Hash[*array_user]
         users << h_user
       end
