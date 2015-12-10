@@ -15,7 +15,7 @@ class Api::RemittentsController < ApplicationController
     end
     @remittents_list = []
     @remittents.each do |remittent|
-      a = ["id", "#{remittent.id}", "user_id", "#{remittent.user_id}", "user", "#{remittent.user.name}","pic", "#{get_user_photo(remittent.user)}" , "packege_img", "#{get_package_photo(remittent)}" ,"description", "#{remittent.description}", "packege_img", "#{get_package_photo(remittent)}", "location_arrived", 
+      a = ["id", "#{remittent.id}", "reward", "#{remittent.reward}", "packages_count", "#{Package.where(courier_id: courier.id).count}", "user_id", "#{remittent.user_id}", "user", "#{remittent.user.name}","pic", "#{get_user_photo(remittent.user)}" , "packege_img", "#{get_package_photo(remittent)}" ,"description", "#{remittent.description}", "packege_img", "#{get_package_photo(remittent)}", "location_arrived", 
         "#{remittent.location_arrived}", "location_departure", "#{remittent.location_departure}", "created_at", "#{time_ago_in_words(remittent.created_at)}"]
       h = Hash[*a]
       @remittents_list << h
