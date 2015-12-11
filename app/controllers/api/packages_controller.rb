@@ -3,9 +3,17 @@ class Api::PackagesController < ApplicationController
 	
 	def index
 	  if params[:profile]
-      	@packages_1 = Package.where("(courier_id = ? AND acceted_request = ?)", params[:current_user], true)
-      	@packages_2 = Package.where("(remittent_id = ? AND acceted_request = ?)", params[:current_user], true)
-      	@packages = @packages_1 + @packages_2
+	  	@packages = []
+	  	@couriers = Courier.where(user_id: params[:current_user])
+		@couriers.each do |c|
+			p = Package.where(courier_id: c.id, acceted_request: true).last
+			@packages << p
+      	end
+      	@remittents = Remttents.where(user_id: params[:current_user])
+		@remittents.each do |r|
+			p = Package.where(remittent_ir: c.id, acceted_request: true).last
+			@packages << p
+      	end
       elsif params[:history]
       	@packages = Package.where("(courier_id = ? OR remittent_id = ? AND status = ?)", params[:current_user], params[:current_user], true)
       else
