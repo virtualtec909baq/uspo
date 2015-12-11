@@ -9,6 +9,7 @@ Rails.application.config.assets.precompile += %w( fontawesome-webfont.woff )
 Rails.application.config.assets.precompile += %w( fontawesome-webfont.ttf )
 Rails.application.config.assets.precompile += %w( placeholder-boarding.png )
 Rails.application.config.assets.precompile += %w( placeholder.png )
+Rails.application.config.assets.precompile += %w( placeholder_remittent.png )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
