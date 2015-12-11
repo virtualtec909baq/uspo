@@ -9,7 +9,7 @@ class Api::PackagesController < ApplicationController
 			p = Package.where(courier_id: c.id, acceted_request: true).last
 			@packages << p
       	end
-      	@remittents = Remttents.where(user_id: params[:current_user])
+      	@remittents = Remittent.where(user_id: params[:current_user])
 		@remittents.each do |r|
 			p = Package.where(remittent_ir: c.id, acceted_request: true).last
 			@packages << p
