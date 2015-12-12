@@ -77,6 +77,6 @@ class Api::RemittentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def remittent_params
-      params.require(:remittent).permit(:user_id, :description, :packege_img, :location_arrived, :location_departure, :packege_type_id, :description_location, :status)
+      params.require(:remittent).permit(:user_id, :description, :packege_img, :location_arrived, :location_departure, :packege_type_id, :description_location, :status, :reward)
     end
 end
