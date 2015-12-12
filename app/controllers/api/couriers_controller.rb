@@ -90,6 +90,6 @@ class Api::CouriersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def courier_params
-      params.require(:courier).permit(:user_id, :trip_description, :img_ticket, :location_arrived, :location_departure, :time_arriv, :departure_time)
+      params.require(:courier).permit(:user_id, :trip_description, :img_ticket, :location_arrived, :location_departure, :time_arriv, :departure_time, :reward)
     end
 end
