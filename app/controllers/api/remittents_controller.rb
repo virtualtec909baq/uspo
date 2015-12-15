@@ -30,7 +30,7 @@ class Api::RemittentsController < ApplicationController
     if params[:profile]
       a = ["id", "#{@remittent.id}", "packages_count", "#{Package.where(remittent_id: @remittent.id).count}","user_id", "#{@remittent.user_id}", "trip_description", "#{@remittent.description}", "img_ticket", "#{@remittent.img_ticket}", "location_arrived", "#{@remittent.location_arrived}", "location_departure", "#{@remittent.location_departure}"]
       h = Hash[*a]
-      courier << h
+      remittent << h
       Package.where(remittent_id: @remittent.id).each do |u|
         array_user = ["id", "#{u.id}", "acceted_request", "#{u.acceted_request}","id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic" , "#{u.remittent.user.pic}", "created_at", "#{time_ago_in_words(u.created_at)}"]
         h_user = Hash[*array_user]
@@ -38,7 +38,7 @@ class Api::RemittentsController < ApplicationController
       end
       render json: { remittent: remittent, users: users , status: "ok" },status: 200
     else
-      courier << @courier
+      remittent << @remittent
       render json: { remittent: remittent, status: "ok" },status: 200
     end
   end 
