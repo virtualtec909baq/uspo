@@ -31,7 +31,7 @@ class Api::MessagesController < ApplicationController
     @messages_list = []
     @messages.each do |message|
       @user_id_sender = User.find(message.user_id_sender)
-      a = ["message", "#{message.message}", "user_id_receiver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}","user_img_sender", "#{get_user_photo(@user_id_sender)}", "created_at", "#{message.created_at.strftime("%B %d %Y %I:%M%p")}" ]
+      a = ["message", "#{message.message}", "user_id_receiver", "#{message.user_id_receiver}", "user_id_sender", "#{message.user_id_sender}","user_name_sender", "#{@user_id_sender.name}","user_img_sender", "#{get_user_photo(@user_id_sender)}", "created_at", "#{message.created_at.strftime("%b %d %I:%M%p")}" ]
       h = Hash[*a]
       @messages_list << h
     end
