@@ -28,7 +28,7 @@ class Api::RemittentsController < ApplicationController
     remittent = []
     users = []
     if params[:profile]
-      a = ["id", "#{@remittent.id}", "packages_count"]
+      a = ["id", "#{@remittent.id}", "packages_count", "#{Package.where(remittent_id: @remittent.id).count}","user_id", "#{@remittent.user_id}", "trip_description", "#{@remittent.description}", "packege_img", "#{@remittent.packege_img}", "location_arrived", "#{@remittent.location_arrived}", "location_departure", "#{@remittent.location_departure}"]
       h = Hash[*a]
       remittent << h
       Package.where(remittent_id: @remittent.id).each do |u|
