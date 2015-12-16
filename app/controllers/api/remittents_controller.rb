@@ -32,7 +32,7 @@ class Api::RemittentsController < ApplicationController
       h = Hash[*a]
       remittent << h
       Package.where(remittent_id: @remittent.id).each do |u|
-        array_user = ["id", "#{u.id}", "acceted_request", "#{u.acceted_request}","id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic" , "#{u.remittent.user.pic}", "created_at", "#{time_ago_in_words(u.created_at)}"]
+        array_user = ["id", "#{u.id}", "name_package", "#{u.name}", "city", "#{u.city}", "zipe_code", "#{u.zipe_code}", "place", "#{u.place}", "date", "#{u.date}", "description", "#{u.description}", "phone", "#{u.phone}", "acceted_request", "#{u.acceted_request}","id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic" , "#{u.remittent.user.pic}", "created_at", "#{time_ago_in_words(u.created_at)}"]
         h_user = Hash[*array_user]
         users << h_user
       end
