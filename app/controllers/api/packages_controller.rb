@@ -6,19 +6,26 @@ class Api::PackagesController < ApplicationController
 	  	@packages = []
 	  	@couriers = Courier.where(user_id: params[:current_user])
 		@couriers.each do |c|
-			p = Package.where(courier_id: c.id, acceted_request: true).last
-			@packages << p
+			Package.where(courier_id: c.id, acceted_request: true).each do |u|
+				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request},","courier_id", "#{u.courier_id},","remittent_id", "#{u.remittent_id},","status", "#{u.status},","name_package", "#{u.name},","city", "#{u.city},","zipe_code", "#{u.zipe_code},","place", "#{u.place},","date", "#{u.date},","description", "#{u.description},","phone", "#{u.phone},", "courier_id", "#{u.courier_id},", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic}"
+				h_user = Hash[*array_user]
+        		@packages << h_user
+      		end
       	end
       	@remittents = Remittent.where(user_id: params[:current_user])
 		@remittents.each do |r|
-			p = Package.where(remittent_id: r.id, acceted_request: true).last
-			@packages << p
+			Package.where(remittent_id: r.id, acceted_request: true).each do |u|
+				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request},","courier_id", "#{u.courier_id},","remittent_id", "#{u.remittent_id},","status", "#{u.status},","name_package", "#{u.name},","city", "#{u.city},","zipe_code", "#{u.zipe_code},","place", "#{u.place},","date", "#{u.date},","description", "#{u.description},","phone", "#{u.phone},", "courier_id", "#{u.courier_id},", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic}"
+				h_user = Hash[*array_user]
+        		@packages << h_user
+        	end
       	end
       elsif params[:history]
-      	@packages = Package.where("(courier_id = ? OR remittent_id = ? AND status = ?)", params[:current_user], params[:current_user], true)
+      	@packages = Package.where("(user_id = ? AND acceted_request = ?)", params[:current_user], true)
       else
 		@packages = Package.all
 	  end
+
 		render json: { packages: @packages, status: "ok" },status: 200
 	end
 
@@ -57,7 +64,6 @@ class Api::PackagesController < ApplicationController
 	end
 
 	private
-    
     # Use callbacks to share common setup or constraints between actions.
     def set_package
       if @package = Package.find(params[:id])
