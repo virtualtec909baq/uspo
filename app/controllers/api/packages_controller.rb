@@ -7,7 +7,7 @@ class Api::PackagesController < ApplicationController
 	  	@couriers = Courier.where(user_id: params[:current_user])
 		@couriers.each do |c|
 			Package.where(courier_id: c.id, acceted_request: true).each do |u|
-				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request},","courier_id", "#{u.courier_id},","remittent_id", "#{u.remittent_id},","status", "#{u.status},","name_package", "#{u.name},","city", "#{u.city},","zipe_code", "#{u.zipe_code},","place", "#{u.place},","date", "#{u.date},","description", "#{u.description},","phone", "#{u.phone},", "courier_id", "#{u.courier_id},", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic}"
+				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "courier_id", "#{u.courier_id}", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic}"
 				h_user = Hash[*array_user]
         		@packages << h_user
       		end
@@ -15,7 +15,7 @@ class Api::PackagesController < ApplicationController
       	@remittents = Remittent.where(user_id: params[:current_user])
 		@remittents.each do |r|
 			Package.where(remittent_id: r.id, acceted_request: true).each do |u|
-				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request},","courier_id", "#{u.courier_id},","remittent_id", "#{u.remittent_id},","status", "#{u.status},","name_package", "#{u.name},","city", "#{u.city},","zipe_code", "#{u.zipe_code},","place", "#{u.place},","date", "#{u.date},","description", "#{u.description},","phone", "#{u.phone},", "courier_id", "#{u.courier_id},", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic}"
+				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "courier_id", "#{u.courier_id}", "id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic", "#{u.remittent.user.pic}"
 				h_user = Hash[*array_user]
         		@packages << h_user
         	end
