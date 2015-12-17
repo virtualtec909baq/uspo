@@ -7,7 +7,12 @@ class Api::PackagesController < ApplicationController
 	  	@couriers = Courier.where(user_id: params[:current_user])
 		@couriers.each do |c|
 			Package.where(courier_id: c.id, acceted_request: true).each do |u|
-				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "courier_id", "#{u.courier_id}", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic}"
+				unless u.courier.user.rankings.count.zero?
+					ranking = (u.courier.user.rankings.map{|ran| ran.ranking_value}.sum) / u.courier.user.rankings.count.to_f
+				else
+					ranking = 0
+				end
+				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "courier_id", "#{u.courier_id}", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic},", "email", "#{u.courier.user.email},", "phone", "#{u.courier.user.phone},", "bio", "#{u.courier.user.bio},", "ranking", "#{ranking.round(1)}"
 				h_user = Hash[*array_user]
         		@packages << h_user
       		end
@@ -15,7 +20,12 @@ class Api::PackagesController < ApplicationController
       	@remittents = Remittent.where(user_id: params[:current_user])
 		@remittents.each do |r|
 			Package.where(remittent_id: r.id, acceted_request: true).each do |u|
-				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "courier_id", "#{u.courier_id}", "id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic", "#{u.remittent.user.pic}"
+				unless u.remittent.user.rankings.count.zero?
+					ranking = (u.remittent.user.rankings.map{|ran| ran.ranking_value}.sum) / u.remittent.user.rankings.count.to_f
+				else
+					ranking = 0
+				end
+				array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "courier_id", "#{u.courier_id}", "id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic", "#{u.remittent.user.pic}", "email", "#{u.remittent.user.email},", "phone", "#{u.remittent.user.phone},", "bio", "#{u.remittent.user.bio},", "ranking", "#{ranking.round(1)}"
 				h_user = Hash[*array_user]
         		@packages << h_user
         	end
