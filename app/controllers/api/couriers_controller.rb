@@ -37,7 +37,7 @@ class Api::CouriersController < ApplicationController
       end
       render json: { courier: courier, users: users , status: "ok" },status: 200
     else
-      a = ["id", "#{@courier.id}","user_id", "#{@courier.user_id}", "trip_description", "#{@courier.trip_description}", "img_ticket", "#{@courier.img_ticket}", "location_arrived", "#{@courier.location_arrived}", "location_departure", "#{@courier.location_departure}", "departure_time", "#{@courier.departure_time.strftime("%b %d %I:%M%p")} ", "time_arrive", "#{@courier.time_arriv.strftime("%b %d %I:%M%p")}"]
+      a = ["id", "#{@courier.id}","reward", "#{@courier.reward}", "packages_count", "#{Package.where(courier_id: @courier.id).count}","user_id", "#{@courier.user_id}", "trip_description", "#{@courier.trip_description}", "img_ticket", "#{@courier.img_ticket}", "location_arrived", "#{@courier.location_arrived}", "location_departure", "#{@courier.location_departure}", "departure_time", "#{@courier.departure_time.strftime("%b %d %I:%M%p")} ", "time_arrive", "#{@courier.time_arriv.strftime("%b %d %I:%M%p")}"]
       h = Hash[*a]
       courier << h
       render json: { courier: courier, status: "ok" },status: 200

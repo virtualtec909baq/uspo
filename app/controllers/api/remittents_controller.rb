@@ -38,7 +38,7 @@ class Api::RemittentsController < ApplicationController
       end
       render json: { remittent: remittent, users: users , status: "ok" },status: 200
     else
-      a = ["id", "#{@remittent.id}", "packages_count", "#{Package.where(remittent_id: @remittent.id).count}","user_id", "#{@remittent.user_id}", "trip_description", "#{@remittent.description}", "packege_img", "#{@remittent.packege_img}", "location_arrived", "#{@remittent.location_arrived}", "location_departure", "#{@remittent.location_departure}", "created_at", "#{time_ago_in_words(@remittent.created_at)}"]
+      a = ["id", "#{@remittent.id}","reward", "#{@remittent.reward}", "packages_count", "#{Package.where(remittent_id: @remittent.id).count}","user_id", "#{@remittent.user_id}", "trip_description", "#{@remittent.description}", "packege_img", "#{@remittent.packege_img}", "location_arrived", "#{@remittent.location_arrived}", "location_departure", "#{@remittent.location_departure}", "created_at", "#{time_ago_in_words(@remittent.created_at)}"]
       h = Hash[*a]
       remittent << h
       render json: { remittent: remittent, status: "ok" },status: 200
