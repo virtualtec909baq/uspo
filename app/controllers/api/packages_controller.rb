@@ -31,7 +31,28 @@ class Api::PackagesController < ApplicationController
         	end
       	end
       elsif params[:history]
-      	@packages = Package.where("(user_id = ? AND acceted_request = ?)", params[:current_user], true)
+      		@packages = []
+      		Package.where(user_id: params[:current_user], acceted_request: true).each do |u|
+      			if(u.courier_id.blank?)
+      				unless u.remittent.user.rankings.count.zero?
+						ranking = (u.remittent.user.rankings.map{|ran| ran.ranking_value}.sum) / u.remittent.user.rankings.count.to_f
+					else
+						ranking = 0
+					end
+					array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "id_user", "#{u.remittent.user.id}", "name", "#{u.remittent.user.name}", "pic", "#{u.remittent.user.pic}", "email", "#{u.remittent.user.email},", "phone_user", "#{u.remittent.user.phone},", "bio", "#{u.remittent.user.bio},", "ranking", "#{ranking.round(1)}"
+					h_user = Hash[*array_user]
+        			@packages << h_user
+      			else
+      				unless u.courier.user.rankings.count.zero?
+					ranking = (u.courier.user.rankings.map{|ran| ran.ranking_value}.sum) / u.courier.user.rankings.count.to_f
+					else
+						ranking = 0
+					end
+					array_user = "id", "#{u.id}", "acceted_request", "#{u.acceted_request}","courier_id", "#{u.courier_id}","remittent_id", "#{u.remittent_id}","status", "#{u.status}","name_package", "#{u.name}","city", "#{u.city}","zipe_code", "#{u.zipe_code}","place", "#{u.place}","date", "#{u.date}","description", "#{u.description}","phone", "#{u.phone}", "id_user", "#{u.courier.user.id}", "name", "#{u.courier.user.name}", "pic", "#{u.courier.user.pic},", "email", "#{u.courier.user.email},", "phone_user", "#{u.courier.user.phone},", "bio", "#{u.courier.user.bio},", "ranking", "#{ranking.round(1)}"
+					h_user = Hash[*array_user]
+        			@packages << h_user
+      			end
+        	end
       else
 		@packages = Package.all
 	  end
