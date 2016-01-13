@@ -9,6 +9,7 @@ set :keep_releases, 3
 
 # files we want symlinking to specific entries in shared.
 set :linked_files, %w{config/database.yml}
+set :ssh_options, { :forward_agent => true }
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
