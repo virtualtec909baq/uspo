@@ -36,6 +36,10 @@ gem 'carrierwave'
 gem 'nested_form_fields'
 gem 'quill-rails', '~> 0.1.0'
 
+group :development do
+  gem 'capistrano-rails', '~> 1.1'
+end
+
 group :test do
   gem 'capybara'
   gem 'shoulda-matchers', require: false
