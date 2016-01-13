@@ -42,17 +42,3 @@ set(:symlinks, [
   }
 ])
 
-namespace :deploy do
-
-  before :publishing, 'deploy:migrate'
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-
-  after :publishing, 'deploy:restart'
-  after :finishing, 'deploy:cleanup'
-end
