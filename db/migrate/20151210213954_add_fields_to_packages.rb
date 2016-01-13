@@ -7,5 +7,7 @@ class AddFieldsToPackages < ActiveRecord::Migration
     add_column :packages, :date, :datetime
     add_column :packages, :description, :string
     add_column :packages, :phone, :string
+    add_column :couriers, :reward, :float
+    add_column :remittents, :reward, :float
   end
 end
