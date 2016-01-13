@@ -2,7 +2,7 @@ set :application, 'uspo'
 set :pty, true
 # setup repo details
 set :scm, :git
-set :repo_url, 'git@github.com:virtualtec909baq/uspo.git'
+set :repo_url, 'https://github.com/virtualtec909baq/uspo.git'
 
 # how many old releases do we want to keep
 set :keep_releases, 3
@@ -40,3 +40,18 @@ set(:symlinks, [
     link: "/etc/monit/conf.d/#{fetch(:full_app_name)}.conf"
   }
 ])
+
+namespace :deploy do
+
+  before :publishing, 'deploy:migrate'
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
+end
