@@ -2,11 +2,18 @@ ol.breadcrumb
   li
     a href="#{ root_path}" 
       span.fa.fa-user
-  li.active #{@user.name}
+  - if @user.name
+  	li.active #{@user.name}
+  - else
+  	li.active
+  	| Unamed
 .ibox-title
 	.row
 		.col-md-4
-			img.img-responsive alt=("Responsive image") class="img-thumbnail" src="#{@user.pic.url}"
+			- if @user.pic.url.blank?
+				img src="http://placehold.it/350x350" /
+			- else
+				img.img-responsive alt=("Responsive image") class="img-thumbnail" src="#{@user.pic.url}"
 		.col-md-8
 			.name
 				h2 
@@ -18,22 +25,53 @@ ol.breadcrumb
 		    		.col-md-6
 		    			.travels
 		    				h5
-		    					| TRAVELS
+		    					| Senders
 		    					hr
 		    			table.table-responsive.table.table-striped.table-bordered.table-hover
 						    thead
 						      tr
-						        th Description
-						        th Cd
-						        th colspan="2" 
+						        th Departure
+						        th Arrived
+						        th Reward 
 
 						    tbody
 						      - @travels.each do |travel|
 						        tr
-					
+						        	td 
+						        	 = travel.location_departure
+
+						        	 = travel.departure_time.strftime(" - %b %d/%y")
+						        	td 
+						        	 	= travel.location_arrived
+
+						        	 	= travel.time_arriv.strftime(" - %b %d/%y")
+						        	td 
+
+						        	   = travel.reward
+
+
+
 					.col-md-6
-		    			.packages
+		    			.travels
 		    				h5
-		    					| PACKAGES
+		    					| Remittent
 		    					hr
-	    					
+		    			table.table-responsive.table.table-striped.table-bordered.table-hover
+						    thead
+						      tr
+						        th Departure
+						        th Arrived
+						        th Reward
+
+						    tbody
+						      - @packages.each do |package|
+						        tr
+						        	td 
+						        	 = package.location_departure
+						        	td 
+						        	 	= package.location_arrived
+
+						        	td 
+
+						        	   = package.reward					
+							
