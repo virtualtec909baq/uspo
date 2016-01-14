@@ -1,9 +1,10 @@
 class SettinsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_settin, only: [:show, :edit, :update, :destroy]
 
   # GET /settins
   def index
-    @settins1 = Settin.where(:id => 1..40)
+    @settins1 = Settin.all
     @settins2 = Settin.last(3) 
   end
 

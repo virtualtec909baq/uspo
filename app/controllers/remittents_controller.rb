@@ -1,4 +1,5 @@
 class RemittentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_remittent, only: [:show]
 
   # GET /remittents

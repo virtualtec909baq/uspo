@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
   def index
-  	@packeges = 0
+  	@packeges = Package.all.count
   	@users_count = User.all.count
   	@users = User.all
   	@travels = 0
