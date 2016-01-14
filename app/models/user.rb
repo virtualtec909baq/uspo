@@ -9,16 +9,16 @@ class User < ActiveRecord::Base
  
   # before_validation :set_provider
   # before_validation :set_uid
-  after_initialize :skip_confirmed_at
+  # after_initialize :skip_confirmed_at
 
   has_many :couriers
   has_many :remittents
   has_many :rankings
   has_many :packages
   
-  def skip_confirmed_at
-      self.confirmed_at  ||= Time.now
-  end
+  # def skip_confirmed_at
+  #     self.confirmed_at  ||= Time.now
+  # end
   # img_uploader
   mount_uploader :pic, ImageUploader
   
